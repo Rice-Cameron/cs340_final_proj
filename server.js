@@ -3,8 +3,6 @@ const path = require('path')
 const exphbs = require('express-handlebars')
 const fs = require("fs")
 
-const budgetData = require('./budgetData.json')
-console.log("==== DATA:", budgetData)
 const app = express()
 const port = process.env.PORT || 3000
 
