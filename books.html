@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Books</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100&family=Roboto:wght@300;400&display=swap"rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Titan+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+
+    <script src="/index.js" charset="utf-8" defer></script>
+</head>
+<body>
+    <header>
+        <h1 class="site-title">Browse for Books</h1>
+        [ <a href="user.html">Your profile</a> | <a href="books.html">Search books</a> ]
+    </header>
+
+    <div id="table of books" style="display: block">
+        <p><strong>List of our books:</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>ISBN</th>
+                <th>Available</th>
+                <th>Check out</th>
+            </tr>
+<!--            DUMMY DATA: USE DATA FROM PDF-->
+            <tr>
+                <td>Harry Potter and the Philosopher's Stone</td>
+                <td>J.K. Rowling</td>
+                <td>Fantasy</td>
+                <td>1997</td>
+                <td>9780747532743</td>
+                <td>Yes</td>
+                <td><button class="check-out-book">Check out</button></td>
+            </tr>
+            <tr>
+                <td>Harry Potter and the Chamber of Secrets</td>
+                <td>J.K. Rowling</td>
+                <td>Fantasy</td>
+                <td>1998</td>
+                <td>9780747538493</td>
+                <td>Yes</td>
+                <td><button class="check-out-book">Check out</button></td>
+            </tr>
+            <tr>
+                <td>Harry Potter and the Prisoner of Azkaban</td>
+                <td>J.K. Rowling</td>
+                <td>Fantasy</td>
+                <td>1999</td>
+                <td>9780747546290</td>
+                <td>Yes</td>
+                <td><button class="check-out-book">Check out</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
