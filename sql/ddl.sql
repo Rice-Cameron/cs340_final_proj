@@ -8,11 +8,11 @@ SET AUTOCOMMIT=0;
 CREATE OR REPLACE TABLE Books (
     isbn varchar(255) NOT NULL,
     title varchar(255) NOT NULL,
-    authorID int(11) NOT NULL,
-    genreID int(11) NOT NULL,
-    publicationYear int(11) NOT NULL,
-    copiesAvailable int(11) NOT NULL DEFAULT 0,
-    publisherID int(11) NOT NULL,
+    authorID int NOT NULL,
+    genreID int NOT NULL,
+    publicationYear int NOT NULL,
+    copiesAvailable int NOT NULL DEFAULT 0,
+    publisherID int NOT NULL,
     UNIQUE (isbn),
     PRIMARY KEY (isbn),
     FOREIGN KEY (authorID) REFERENCES Authors(authorID),
@@ -21,14 +21,14 @@ CREATE OR REPLACE TABLE Books (
 );
 
 CREATE OR REPLACE TABLE Publishers (
-    publisherID int(11) AUTO_INCREMENT NOT NULL,
+    publisherID int AUTO_INCREMENT NOT NULL,
     publisherName varchar(255) NOT NULL,
     UNIQUE (publisherID),
     PRIMARY KEY (publisherID)
 );
 
 CREATE OR REPLACE TABLE Authors (
-    authorID int(11) AUTO_INCREMENT NOT NULL,
+    authorID int AUTO_INCREMENT NOT NULL,
     name varchar(255) NOT NULL,
     birthdate date,
     biography text,
@@ -37,7 +37,7 @@ CREATE OR REPLACE TABLE Authors (
 );
 
 CREATE OR REPLACE TABLE Users (
-    userID int(11) AUTO_INCREMENT NOT NULL,
+    userID int AUTO_INCREMENT NOT NULL,
     name varchar(255) NOT NULL,
     address varchar(255),
     email varchar(255) NOT NULL,
@@ -47,17 +47,17 @@ CREATE OR REPLACE TABLE Users (
 );
 
 CREATE OR REPLACE TABLE Genres (
-    genreID int(11) AUTO_INCREMENT NOT NULL,
+    genreID int AUTO_INCREMENT NOT NULL,
     genreName varchar(255) NOT NULL,
     UNIQUE (genreID),
     PRIMARY KEY (genreID)
 );
 
 CREATE OR REPLACE TABLE Reviews (
-    reviewID int(11) AUTO_INCREMENT NOT NULL,
-    userID int(11) NOT NULL,
+    reviewID int AUTO_INCREMENT NOT NULL,
+    userID int NOT NULL,
     isbn varchar(255) NOT NULL,
-    rating int(11) NOT NULL,
+    rating int NOT NULL,
     reviewText text,
     UNIQUE (reviewID),
     PRIMARY KEY (reviewID),
