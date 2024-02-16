@@ -109,42 +109,61 @@ CREATE OR REPLACE TABLE Books_Genres (
 -- INSERT DATA
 --
 
+-- Insert data into Genres
 INSERT INTO Genres (genreName)
 VALUES
 ('Dystopian Fiction'),
 ('Southern Gothic'),
 ('Coming-of-Age Fiction');
 
+-- Insert data into Authors
 INSERT INTO Authors (name, birthdate, biography)
 VALUES
 ('George Orwell', '1903-06-25', 'British novelist, essayist, journalist, and critic.'),
 ('Harper Lee', '1926-04-28', 'American novelist widely known for "To Kill a Mockingbird".'),
 ('J.D. Salinger', '1919-01-01', 'American writer best known for his novel "The Catcher in the Rye".');
 
+-- Insert data into Publishers
 INSERT INTO Publishers(publisherName)
 VALUES
 ('Penguin Books'),
 ('Harper Perennial Modern Classics'),
 ('Little, Brown and Company');
 
-INSERT INTO Books(isbn, title, authorID, genreID, publicationYear, copiesAvailable, publisherID)
+-- Insert data into Books
+INSERT INTO Books(isbn, title, publicationYear, copiesAvailable, publisherID)
 VALUES
-('978-1982131739', '1984', (SELECT authorID from Authors where name='George Orwell'), (SELECT genreID from Genres where genreName = 'Dystopian Fiction'), 1949, 5, (SELECT publisherID from Publishers where publisherName='Penguin Books')),
-('978-0061120084', 'To Kill a Mockingbird', (SELECT authorID from Authors where name='Harper Lee'), (SELECT genreID from Genres where genreName = 'Southern Gothic'), 1960, 3, (SELECT publisherID from Publishers where publisherName='Harper Perennial Modern Classics')),
-('978-0307474278', 'The Catcher in the Rye', (SELECT authorID from Authors where name='J.D. Salinger'), (SELECT genreID from Genres where genreName = 'Coming-of-Age Fiction'), 1951, 7, (SELECT publisherID from Publishers where publisherName='Little, Brown and Company'));
+('978-1982131739', '1984', 1949, 5, (SELECT publisherID from Publishers where publisherName='Penguin Books')),
+('978-0061120084', 'To Kill a Mockingbird', 1960, 3, (SELECT publisherID from Publishers where publisherName='Harper Perennial Modern Classics')),
+('978-0307474278', 'The Catcher in the Rye', 1951, 7, (SELECT publisherID from Publishers where publisherName='Little, Brown and Company'));
 
+-- Insert data into Users
 INSERT INTO Users (name, address, email, phoneNumber)
 VALUES
 ('John Smith', '123 Main St, Corvallis, USA', 'john.smith@email.com', '555-123-4567'),
 ('Emily Johnson', '456 Elm St, Corvallis, USA', 'emily.johnson@email.com', '555-987-6543'),
 ('Michael Brown', '789 Oak St, Corvallis, USA', 'michael.brown@email.com', '555-876-5432');
 
+-- Insert data into Books_Authors
+INSERT INTO Books_Authors (isbn, authorID)
+VALUES
+('978-1982131739', (SELECT authorID from Authors where name='George Orwell')),
+('978-0061120084', (SELECT authorID from Authors where name='Harper Lee')),
+('978-0307474278', (SELECT authorID from Authors where name='J.D. Salinger'));
 
+-- Insert data into Books_Genres
+INSERT INTO Books_Genres (isbn, genreID)
+VALUES
+('978-1982131739', (SELECT genreID from Genres where genreName = 'Dystopian Fiction')),
+('978-0061120084', (SELECT genreID from Genres where genreName = 'Southern Gothic')),
+('978-0307474278', (SELECT genreID from Genres where genreName = 'Coming-of-Age Fiction'));
+
+-- Insert data into Reviews
+-- Eventually, data will be added from user input through dm.sql
 INSERT INTO Reviews(userID, isbn, rating, reviewText)
 VALUES
-((SELECT userID from Users where userID = 1), (SELECT isbn from Books where isbn = '978-1982131739'), 4, 'A thought-provoking classic that remains relevant to this day.'),
-((SELECT userID from Users where userID = 2), (SELECT isbn from Books where isbn = '978-0061120084'), 5, 'A timeless masterpiece with powerful themes.'),
-((SELECT userID from Users where userID = 3), (SELECT isbn from Books where isbn = '978-0307474278'), 3, 'An interesting coming-of-age story, but not my favorite."');
-
+((SELECT userID from Users where name = 'John Smith'), '978-1982131739', 4, 'A thought-provoking classic that remains relevant to this day.'),
+((SELECT userID from Users where name = 'Emily Johnson'), '978-0061120084', 5, 'A timeless masterpiece with powerful themes.'),
+((SELECT userID from Users where name = 'Michael Brown'), '978-0307474278', 3, 'An interesting coming-of-age story, but not my favorite.');
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
