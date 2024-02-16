@@ -14,8 +14,8 @@ SET AUTOCOMMIT=0;
 --
 
 CREATE OR REPLACE TABLE Books (
-    isbn varchar(255) NOT NULL,
-    title varchar(255) NOT NULL,
+    isbn varchar(17) NOT NULL,
+    title varchar(140) NOT NULL,
     publicationYear int NOT NULL,
     copiesAvailable int NOT NULL DEFAULT 0,
     publisherID int NOT NULL,
@@ -26,7 +26,7 @@ CREATE OR REPLACE TABLE Books (
 
 CREATE OR REPLACE TABLE Publishers (
     publisherID int AUTO_INCREMENT NOT NULL,
-    publisherName varchar(255) NOT NULL,
+    publisherName varchar(100) NOT NULL,
     UNIQUE (publisherID),
     PRIMARY KEY (publisherID)
 );
@@ -34,7 +34,7 @@ CREATE OR REPLACE TABLE Publishers (
 -- Maybe add, CONSTRAINT publishedBook FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE
 CREATE OR REPLACE TABLE Authors (
     authorID int AUTO_INCREMENT NOT NULL,
-    name varchar(255) NOT NULL,
+    name varchar NOT NULL,
     birthdate date,
     biography text,
     UNIQUE (authorID),
@@ -43,17 +43,17 @@ CREATE OR REPLACE TABLE Authors (
 
 CREATE OR REPLACE TABLE Users (
     userID int AUTO_INCREMENT NOT NULL,
-    name varchar(255) NOT NULL,
-    address varchar(255),
-    email varchar(255) NOT NULL,
-    phoneNumber varchar(255),
+    name varchar(100) NOT NULL,
+    address varchar(95),
+    email varchar(100) NOT NULL,
+    phoneNumber varchar(20),
     UNIQUE (userID),
     PRIMARY KEY (userID)
 );
 
 CREATE OR REPLACE TABLE Genres (
     genreID int AUTO_INCREMENT NOT NULL,
-    genreName varchar(255) NOT NULL,
+    genreName varchar(40) NOT NULL,
     UNIQUE (genreID),
     PRIMARY KEY (genreID)
 );
@@ -61,7 +61,7 @@ CREATE OR REPLACE TABLE Genres (
 CREATE OR REPLACE TABLE Reviews (
     reviewID int AUTO_INCREMENT NOT NULL,
     userID int NOT NULL,
-    isbn varchar(255) NOT NULL,
+    isbn varchar(17) NOT NULL,
     rating int NOT NULL,
     reviewText text,
     UNIQUE (reviewID),
@@ -76,7 +76,7 @@ CREATE OR REPLACE TABLE Reviews (
 
 CREATE OR REPLACE TABLE Books_Authors (
     authorshipID int AUTO_INCREMENT NOT NULL,
-    isbn varchar(255) NOT NULL,
+    isbn varchar(17) NOT NULL,
     authorID int NOT NULL,
     PRIMARY KEY (authorshipID),
     FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE,
@@ -85,7 +85,7 @@ CREATE OR REPLACE TABLE Books_Authors (
 
 CREATE OR REPLACE TABLE Books_Users (
     borrowingID int AUTO_INCREMENT NOT NULL,
-    isbn varchar(255) NOT NULL,
+    isbn varchar(17) NOT NULL,
     userID int NOT NULL,
     dateBorrowed date NOT NULL,
     dueDate date,
@@ -96,7 +96,7 @@ CREATE OR REPLACE TABLE Books_Users (
 
 CREATE OR REPLACE TABLE Books_Genres (
     assignmentID int AUTO_INCREMENT NOT NULL,
-    isbn varchar(255) NOT NULL,
+    isbn varchar(17) NOT NULL,
     genreID int NOT NULL,
     PRIMARY KEY (assignmentID),
     FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE,
