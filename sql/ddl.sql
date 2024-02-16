@@ -17,15 +17,11 @@ SET AUTOCOMMIT=0;
 CREATE OR REPLACE TABLE Books (
     isbn varchar(255) NOT NULL,
     title varchar(255) NOT NULL,
-    authorID int NOT NULL,
-    genreID int NOT NULL,
     publicationYear int NOT NULL,
     copiesAvailable int NOT NULL DEFAULT 0,
     publisherID int NOT NULL,
     UNIQUE (isbn),
     PRIMARY KEY (isbn),
-    FOREIGN KEY (authorID) REFERENCES Authors(authorID) ON DELETE CASCADE,
-    FOREIGN KEY (genreID) REFERENCES Genres(genreID) ON DELETE CASCADE,
     FOREIGN KEY (publisherID) REFERENCES Publishers(publisherID ON DELETE CASCADE
 );
 
@@ -36,6 +32,7 @@ CREATE OR REPLACE TABLE Publishers (
     PRIMARY KEY (publisherID)
 );
 
+-- Maybe add, CONSTRAINT publishedBook FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE
 CREATE OR REPLACE TABLE Authors (
     authorID int AUTO_INCREMENT NOT NULL,
     name varchar(255) NOT NULL,
@@ -43,7 +40,6 @@ CREATE OR REPLACE TABLE Authors (
     biography text,
     UNIQUE (authorID),
     PRIMARY KEY (authorID)
-    --CONSTRAINT publishedBook FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE
 );
 
 CREATE OR REPLACE TABLE Users (
@@ -78,7 +74,8 @@ CREATE OR REPLACE TABLE Reviews (
 --
 -- INTERSECTION TABLES
 --
-CREATE OR REPLACE TABLE Books_Authors(
+
+CREATE OR REPLACE TABLE Books_Authors (
     authorshipID int AUTO_INCREMENT NOT NULL,
     isbn varchar(255) NOT NULL,
     authorID int NOT NULL,
@@ -87,7 +84,7 @@ CREATE OR REPLACE TABLE Books_Authors(
     FOREIGN KEY (authorID) REFERENCES Authors(authorID) ON DELETE CASCADE
 );
 
-CREATE OR REPLACE TABLE Books_Users(
+CREATE OR REPLACE TABLE Books_Users (
     borrowingID int AUTO_INCREMENT NOT NULL,
     isbn varchar(255) NOT NULL,
     userID int NOT NULL,
@@ -98,7 +95,7 @@ CREATE OR REPLACE TABLE Books_Users(
     FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE
 );
 
-CREATE OR REPLACE TABLE Books_Genres(
+CREATE OR REPLACE TABLE Books_Genres (
     assignmentID int AUTO_INCREMENT NOT NULL,
     isbn varchar(255) NOT NULL,
     genreID int NOT NULL,
