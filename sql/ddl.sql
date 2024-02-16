@@ -6,7 +6,6 @@
 /* Description: Project Step 3 Draft */
 
 
-
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT=0;
 
@@ -22,7 +21,7 @@ CREATE OR REPLACE TABLE Books (
     publisherID int NOT NULL,
     UNIQUE (isbn),
     PRIMARY KEY (isbn),
-    FOREIGN KEY (publisherID) REFERENCES Publishers(publisherID ON DELETE CASCADE
+    FOREIGN KEY (publisherID) REFERENCES Publishers(publisherID) ON DELETE CASCADE
 );
 
 CREATE OR REPLACE TABLE Publishers (
