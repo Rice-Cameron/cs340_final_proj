@@ -1,21 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Review</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reviews</title>
 </head>
+
 <body>
     <header>
-        <h1 class="site-title">Review</h1>
-        [ <a href="index.html">Home</a> | <a href="user.html">Your profile</a> | <a href="books.html">Search books</a> ]
+        <h1 class="site-title">Reviews</h1>
+        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a href="user.html">Users</a> | <a
+            href="reviews.html">Reviews</a> | <a href="publishers.html">Publishers</a> | <a
+            href="genres.html">Genres</a> | <a href="authors.html">Authors</a>
+        ]
     </header>
 
-    <p>Review the book: <span id="book-title"></span></p>
-    <form id="review-form">
-        <textarea id="review-text" placeholder="Write your review here"></textarea>
-        <a href="user.html"><button type="submit">Submit</button></a>
-        <a href="user.html"><button type="button" id="cancel">Cancel</button></a>
-    </form>
-    <script src="/review.js" charset="utf-8" defer></script>
+    <section id="add-review">
+        <h2>Add New Review</h2>
+        <form action="#" method="post">
+            <label for="review-id">Review ID:</label>
+            <input type="text" id="review-id" name="review-id" required>
+
+            <label for="user-id">User ID:</label>
+            <input type="text" id="user-id" name="user-id" required>
+
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" required>
+
+            <label for="rating">Rating:</label>
+            <input type="text" id="rating" name="rating" required>
+
+            <label for="review-text">Review Text:</label>
+            <input type="text" id="reviewText" name="reviewText" required>
+
+            <input type="submit" value="Add Review">
+        </form>
+    </section>
+
+    <div id="table-of-reviews" style="display: block">
+        <p><strong>List of Reviews:</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Review ID</th>
+                <th>User ID</th>
+                <th>ISBN</th>
+                <th>Rating</th>
+                <th>Review Text</th>
+            </tr>
+            <tr>
+                <td><button onclick="editReview(1)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteReview(1)" class="delete-button">Delete</button></td>
+                <td>1</td>
+                <td>1</td>
+                <td>978-1982131739</td>
+                <td>4</td>
+                <td>A thought-provoking classic that remains relevant to this day.</td>
+            </tr>
+            <tr>
+                <td><button onclick="editReview(2)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteReview(2)" class="delete-button">Delete</button></td>
+                <td>2</td>
+                <td>2</td>
+                <td>978-0061120084</td>
+                <td>5</td>
+                <td>A timeless masterpiece with powerful themes.</td>
+            </tr>
+            <tr>
+                <td><button onclick="editReview(3)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteReview(3)" class="delete-button">Delete</button></td>
+                <td>3</td>
+                <td>3</td>
+                <td>978-0307474278</td>
+                <td>3</td>
+                <td>An interesting coming-of-age story, but not my favorite.</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function deleteReview(id) {
+            // Add your code here for deleting a review
+            alert("Functionality for deleting review with ID " + id + " is not implemented yet.");
+        }
+        function editReview(id) {
+            // Add your code here for editing a review
+            alert("Functionality for editing review with ID " + id + " is not implemented yet.");
+        }
+    </script>
 </body>
+
 </html>

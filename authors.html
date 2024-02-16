@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Authors</title>
+</head>
+
+<body>
+<header>
+    <h1 class="site-title">Authors</h1>
+    [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a href="user.html">Users</a> | <a
+        href="reviews.html">Reviews</a> | <a href="publishers.html">Publishers</a> | <a
+        href="genres.html">Genres</a> | <a href="authors.html">Authors</a>
+    ]
+</header>
+
+<section id="add-author">
+    <h2>Add New Author</h2>
+    <form action="#" method="post">
+        <label for="author-name">Author Name:</label>
+        <input type="text" id="author-name" name="author-name" required>
+
+        <input type="submit" value="Add Author">
+    </form>
+</section>
+
+<div id="table-of-publishers" style="display: block">
+    <p><strong>List of our publishers:</strong></p>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Author Name</th>
+        </tr>
+        <tr>
+            <td><button onclick="editAuthor(1)" class="edit-button">Edit</button></td>
+            <td><button onclick="deleteAuthor(1)" class="delete-button">Delete</button></td>
+            <td>George Orwell</td>
+        </tr>
+        <tr>
+            <td><button onclick="editAuthor(2)" class="edit-button">Edit</button></td>
+            <td><button onclick="deleteAuthor(2)" class="delete-button">Delete</button></td>
+            <td>Harper Lee</td>
+        </tr>
+        <tr>
+            <td><button onclick="editAuthor(3)" class="edit-button">Edit</button></td>
+            <td><button onclick="deleteAuthor(3)" class="delete-button">Delete</button></td>
+            <td>J.D. Salinger</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function deleteAuthor(id) {
+        // Add your code here for deleting a publisher
+        alert("Functionality for deleting publisher with ID " + id + " is not implemented yet.");
+    }
+    function editAuthor(id) {
+        // Add your code here for editing a publisher
+        alert("Functionality for editing publisher with ID " + id + " is not implemented yet.");
+    }
+</script>
+</body>
+
+</html>
