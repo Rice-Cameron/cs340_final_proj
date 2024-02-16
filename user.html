@@ -1,46 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Profile page</title>
-
+    <title>Users</title>
 </head>
+
 <body>
-<header>
-    <h1 class="site-title">Your Profile</h1>
-    [ <a href="index.html">Home</a> | <a href="books.html">Search books</a> ]
-</header>
-<div class="user-books">
-    <h2>Your checked out books</h2>
-    <table id="user-books-table" border="1" cellpadding="5">
-        <tr>
-            <th>Title</th>
-            <th>Renew</th>
-            <th>Add review</th>
-        </tr>
-        <tr>
-            <td>Book</td>
-            <td><button>Renew</button></td>
-            <td><a href="reviews.html"><button>Add review</button></a></td>
-        </tr>
-    </table>
-</div>
-<div class="user-reviews">
-    <h2>Your reviews</h2>
-    <table id="user-reviews-table" border="1" cellpadding="5">
-        <tr>
-            <th>Title</th>
-            <th>Rating</th>
-            <th>Review</th>
-        </tr>
-        <tr>
-            <td>Book</td>
-            <td>5</td>
-            <td>Good book</td>
-        </tr>
-    </table>
-</div>
+    <header>
+        <h1 class="site-title">Users</h1>
+        [ <a href="index.html">Home</a> | <a href="user.html">Users</a> | <a href="books.html">Books</a> | <a
+            href="reviews.html">Reviews</a> | <a href="publishers.html">Publishers</a> | <a
+            href="genres.html">Genres</a>
+        ]
+    </header>
+
+    <section id="add-user">
+        <h2>Add New User</h2>
+        <form action="#" method="post">
+            <label for="user-id">User ID:</label>
+            <input type="text" id="user-id" name="user-id" required>
+
+            <label for="user-name">Name:</label>
+            <input type="text" id="user-name" name="user-name" required>
+
+            <label for="user-address">Address:</label>
+            <input type="text" id="user-address" name="user-address" required>
+
+            <label for="user-email">Email:</label>
+            <input type="email" id="user-email" name="user-email" required>
+
+            <label for="user-phone">Phone Number:</label>
+            <input type="tel" id="user-phone" name="user-phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="Format: 555-123-4567" required>
+
+            <input type="submit" value="Add User">
+        </form>
+    </section>
+
+    <div id="table-of-users" style="display: block">
+        <p><strong>List of users:</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+            </tr>
+            <tr>
+                <td><button onclick="editUser(1)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteUser(1)" class="delete-button">Delete</button></td>
+                <td>1</td>
+                <td>John Smith</td>
+                <td>123 Main St, Corvallis, USA</td>
+                <td>john.smith@email.com</td>
+                <td>555-123-4567</td>
+            </tr>
+            <tr>
+                <td><button onclick="editUser(2)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteUser(2)" class="delete-button">Delete</button></td>
+                <td>2</td>
+                <td>Emily Johnson</td>
+                <td>456 Elm St, Corvallis, USA</td>
+                <td>emily.johnson@email.com</td>
+                <td>555-987-6543</td>
+            </tr>
+            <tr>
+                <td><button onclick="editUser(3)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteUser(3)" class="delete-button">Delete</button></td>
+                <td>3</td>
+                <td>Michael Brown</td>
+                <td>789 Oak St, Corvallis, USA</td>
+                <td>michael.brown@email.com</td>
+                <td>555-876-5432</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function deleteUser(id) {
+            // Add your code here for deleting a user
+            alert("Functionality for deleting user with ID " + id + " is not implemented yet.");
+        }
+        function editUser(id) {
+            // Add your code here for editing a user
+            alert("Functionality for editing user with ID " + id + " is not implemented yet.");
+        }
+    </script>
 </body>
+
 </html>
