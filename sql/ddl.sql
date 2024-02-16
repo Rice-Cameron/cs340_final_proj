@@ -31,10 +31,9 @@ CREATE OR REPLACE TABLE Publishers (
     PRIMARY KEY (publisherID)
 );
 
--- Maybe add, CONSTRAINT publishedBook FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE
 CREATE OR REPLACE TABLE Authors (
     authorID int AUTO_INCREMENT NOT NULL,
-    name varchar NOT NULL,
+    name varchar(100) NOT NULL,
     birthdate date,
     biography text,
     UNIQUE (authorID),
@@ -146,23 +145,23 @@ VALUES
 -- Insert data into Books_Authors
 INSERT INTO Books_Authors (isbn, authorID)
 VALUES
-('978-1982131739', (SELECT authorID from Authors where name='George Orwell')),
-('978-0061120084', (SELECT authorID from Authors where name='Harper Lee')),
-('978-0307474278', (SELECT authorID from Authors where name='J.D. Salinger'));
+((SELECT isbn from Books where isbn = '978-1982131739'), (SELECT authorID from Authors where name='George Orwell')),
+((SELECT isbn from Books where isbn = '978-0061120084'), (SELECT authorID from Authors where name='Harper Lee')),
+((SELECT isbn from Books where isbn = '978-0307474278'), (SELECT authorID from Authors where name='J.D. Salinger'));
 
 -- Insert data into Books_Genres
 INSERT INTO Books_Genres (isbn, genreID)
 VALUES
-('978-1982131739', (SELECT genreID from Genres where genreName = 'Dystopian Fiction')),
-('978-0061120084', (SELECT genreID from Genres where genreName = 'Southern Gothic')),
-('978-0307474278', (SELECT genreID from Genres where genreName = 'Coming-of-Age Fiction'));
+((SELECT isbn from Books where isbn = '978-1982131739'), (SELECT genreID from Genres where genreName = 'Dystopian Fiction')),
+((SELECT isbn from Books where isbn = '978-0061120084'), (SELECT genreID from Genres where genreName = 'Southern Gothic')),
+((SELECT isbn from Books where isbn = '978-0307474278'), (SELECT genreID from Genres where genreName = 'Coming-of-Age Fiction'));
 
 -- Insert data into Reviews
 -- Eventually, data will be added from user input through dm.sql
 INSERT INTO Reviews(userID, isbn, rating, reviewText)
 VALUES
-((SELECT userID from Users where name = 'John Smith'), '978-1982131739', 4, 'A thought-provoking classic that remains relevant to this day.'),
-((SELECT userID from Users where name = 'Emily Johnson'), '978-0061120084', 5, 'A timeless masterpiece with powerful themes.'),
-((SELECT userID from Users where name = 'Michael Brown'), '978-0307474278', 3, 'An interesting coming-of-age story, but not my favorite.');
+((SELECT userID from Users where name = 'John Smith'), (SELECT isbn from Books where isbn = '978-1982131739'), 4, 'A thought-provoking classic that remains relevant to this day.'),
+((SELECT userID from Users where name = 'Emily Johnson'), (SELECT isbn from Books where isbn = '978-0061120084'), 5, 'A timeless masterpiece with powerful themes.'),
+((SELECT userID from Users where name = 'Michael Brown'), (SELECT isbn from Books where isbn = '978-0307474278'), 3, 'An interesting coming-of-age story, but not my favorite.');
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
