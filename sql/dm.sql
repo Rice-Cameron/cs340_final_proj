@@ -1,4 +1,9 @@
 -- Data Manipulation Queries
+/* Names: Cameron Rice, Brandon Healey */
+/* Group: 82 */
+/* Project Title: Library Database System */
+/* Class: CS340 */
+/* Description: Project Step 3 Draft */
 
 --
 -- INSERT QUERIES
