@@ -31,10 +31,9 @@ CREATE OR REPLACE TABLE Publishers (
     PRIMARY KEY (publisherID)
 );
 
--- Maybe add, CONSTRAINT publishedBook FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE
 CREATE OR REPLACE TABLE Authors (
     authorID int AUTO_INCREMENT NOT NULL,
-    name varchar NOT NULL,
+    name varchar(100) NOT NULL,
     birthdate date,
     biography text,
     UNIQUE (authorID),
