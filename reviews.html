@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Review</title>
 </head>
 <body>
+    <header>
+        <h1 class="site-title">Review</h1>
+        [ <a href="index.html">Home</a> | <a href="user.html">Your profile</a> | <a href="books.html">Search books</a> ]
+    </header>
 
+    <p>Review the book: <span id="book-title"></span></p>
+    <form id="review-form">
+        <textarea id="review-text" placeholder="Write your review here"></textarea>
+        <a href="user.html"><button type="submit">Submit</button></a>
+        <a href="user.html"><button type="button" id="cancel">Cancel</button></a>
+    </form>
+    <script src="/review.js" charset="utf-8" defer></script>
 </body>
 </html>
