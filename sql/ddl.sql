@@ -11,17 +11,10 @@ SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT=0;
 
 --
--- CREATE TABLES
+-- CREATE OR REPLACE TABLES
 --
 
-DROP TABLE IF EXISTS Books;
-DROP TABLE IF EXISTS Publishers;
-DROP TABLE IF EXISTS Authors;
-DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Reviews;
-DROP TABLE IF EXISTS Genres;
-
-CREATE TABLE Books (
+CREATE OR REPLACE TABLE Books (
     isbn varchar(255) NOT NULL,
     title varchar(255) NOT NULL,
     authorID int NOT NULL,
@@ -36,23 +29,24 @@ CREATE TABLE Books (
     FOREIGN KEY (publisherID) REFERENCES Publishers(publisherID ON DELETE CASCADE
 );
 
-CREATE TABLE Publishers (
+CREATE OR REPLACE TABLE Publishers (
     publisherID int AUTO_INCREMENT NOT NULL,
     publisherName varchar(255) NOT NULL,
     UNIQUE (publisherID),
     PRIMARY KEY (publisherID)
 );
 
-CREATE TABLE Authors (
+CREATE OR REPLACE TABLE Authors (
     authorID int AUTO_INCREMENT NOT NULL,
     name varchar(255) NOT NULL,
     birthdate date,
     biography text,
     UNIQUE (authorID),
     PRIMARY KEY (authorID)
+    --CONSTRAINT publishedBook FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE
 );
 
-CREATE TABLE Users (
+CREATE OR REPLACE TABLE Users (
     userID int AUTO_INCREMENT NOT NULL,
     name varchar(255) NOT NULL,
     address varchar(255),
@@ -62,14 +56,14 @@ CREATE TABLE Users (
     PRIMARY KEY (userID)
 );
 
-CREATE TABLE Genres (
+CREATE OR REPLACE TABLE Genres (
     genreID int AUTO_INCREMENT NOT NULL,
     genreName varchar(255) NOT NULL,
     UNIQUE (genreID),
     PRIMARY KEY (genreID)
 );
 
-CREATE TABLE Reviews (
+CREATE OR REPLACE TABLE Reviews (
     reviewID int AUTO_INCREMENT NOT NULL,
     userID int NOT NULL,
     isbn varchar(255) NOT NULL,
@@ -80,6 +74,43 @@ CREATE TABLE Reviews (
     FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE,
     FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE
 );
+
+--
+-- INTERSECTION TABLES
+--
+CREATE OR REPLACE TABLE Books_Authors(
+    authorshipID int AUTO_INCREMENT NOT NULL,
+    isbn varchar(255) NOT NULL,
+    authorID int NOT NULL,
+    PRIMARY KEY (authorshipID),
+    FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE,
+    FOREIGN KEY (authorID) REFERENCES Authors(authorID) ON DELETE CASCADE
+);
+
+CREATE OR REPLACE TABLE Books_Users(
+    borrowingID int AUTO_INCREMENT NOT NULL,
+    isbn varchar(255) NOT NULL,
+    userID int NOT NULL,
+    dateBorrowed date NOT NULL,
+    dueDate date,
+    PRIMARY KEY (borrowingID),
+    FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE,
+    FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE
+);
+
+CREATE OR REPLACE TABLE Books_Genres(
+    assignmentID int AUTO_INCREMENT NOT NULL,
+    isbn varchar(255) NOT NULL,
+    genreID int NOT NULL,
+    PRIMARY KEY (assignmentID),
+    FOREIGN KEY (isbn) REFERENCES Books(isbn) ON DELETE CASCADE,
+    FOREIGN KEY (genreID) REFERENCES Genres(genreID) ON DELETE CASCADE
+);
+
+
+--
+-- INSERT DATA
+--
 
 INSERT INTO Genres (genreName)
 VALUES
