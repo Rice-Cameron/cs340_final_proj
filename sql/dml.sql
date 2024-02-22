@@ -11,23 +11,23 @@
 
 -- Query to add a book to the database
 INSERT INTO Books (isbn, title, publicationYear, copiesAvailable, publisherID)
-VALUES (:isbnInput, :titleInput, :publicationYearInput, :copiesAvailableInput, :publisherIDInput);
+VALUES (:isbn_input, :title_input, :publication_year_input, :copies_available_input, :publisherID_from_publisher_name);
 
 -- Query to add a publisher to the database
 INSERT INTO Publishers (publisherName)
-VALUES (:publisherNameInput);
+VALUES (:publisher_name_input);
 
 -- Query to add an author to the database
 INSERT INTO Authors (name, birthdate, biography)
-VALUES (:authorNameInput, :birthdateInput, :biographyInput);
+VALUES (:author_name_input, :birthdate_input, :biography_input);
 
 -- Query to add a user to the database
 INSERT INTO Users (name, address, email, phoneNumber)
-VALUES (:nameInput, :addressInput, :emailInput, :phoneNumberInput);
+VALUES (:name_input, :address_input, :email_input, :phone_number_input);
 
 -- Query to add a genre to the database
 INSERT INTO Genres (genreName)
-VALUES (:genreNameInput);
+VALUES (:genre_name_input);
 
 -- Query to add a review to a book
 INSERT INTO Reviews (userID, isbn, rating, reviewText)
@@ -101,7 +101,7 @@ WHERE publisherID = :publisherID_from_publisher_name;
 
 -- Delete a Book
 DELETE FROM Books
-WHERE isbn = :isbnInput
+WHERE isbn = :isbn_input
 
 -- Delete a User
 DELETE FROM Users
