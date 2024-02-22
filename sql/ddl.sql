@@ -3,7 +3,7 @@
 /* Group: 82 */
 /* Project Title: Library Database System */
 /* Class: CS340 */
-/* Description: Project Step 3 Draft */
+/* Description: Project Step 3 Final */
 
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,7 +59,7 @@ CREATE OR REPLACE TABLE Genres (
 
 CREATE OR REPLACE TABLE Reviews (
     reviewID int AUTO_INCREMENT NOT NULL,
-    userID int NOT NULL,
+    userID int,
     isbn varchar(17) NOT NULL,
     rating int NOT NULL,
     reviewText text,
@@ -84,8 +84,8 @@ CREATE OR REPLACE TABLE Books_Authors (
 
 CREATE OR REPLACE TABLE Books_Users (
     borrowingID int AUTO_INCREMENT NOT NULL,
-    isbn varchar(17) NOT NULL,
-    userID int NOT NULL,
+    isbn varchar(17),
+    userID int,
     dateBorrowed date NOT NULL,
     dueDate date,
     PRIMARY KEY (borrowingID),

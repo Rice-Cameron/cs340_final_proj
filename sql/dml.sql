@@ -3,7 +3,7 @@
 /* Group: 82 */
 /* Project Title: Library Database System */
 /* Class: CS340 */
-/* Description: Project Step 3 Draft */
+/* Description: Project Step 3 Final */
 
 --
 -- INSERT QUERIES
@@ -99,9 +99,30 @@ WHERE publisherID = :publisherID_from_publisher_name;
 -- DELETE QUERIES
 --
 
--- Query to return a book to the library
-DELETE FROM Books_Users
-WHERE isbn = :isbn_from_book_title AND userID = :userID_from_account;
+-- Delete a Book
+DELETE FROM Books
+WHERE isbn = :isbnInput
+
+-- Delete a User
+DELETE FROM Users
+WHERE userID = :userID_from_name
+
+-- Delete a Review
+DELETE FROM Reviews
+WHERE reviewID = :reviewID_from_review_text
+
+-- Delete an Author
+DELETE FROM Authors
+WHERE authorID = :authorID_from_author_name
+
+-- Delete a Genre
+DELETE FROM Genres
+WHERE genreID = :genreID_from_genre_name
+
+-- Delete a Publisher
+DELETE FROM Publisher
+WHERE publisherID = :publisherID_from_publisher_name
+
 
 --
 -- UPDATE QUERIES
