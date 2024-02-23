@@ -156,6 +156,13 @@ VALUES
 ((SELECT isbn from Books where isbn = '978-0061120084'), (SELECT genreID from Genres where genreName = 'Southern Gothic')),
 ((SELECT isbn from Books where isbn = '978-0307474278'), (SELECT genreID from Genres where genreName = 'Coming-of-Age Fiction'));
 
+-- Insert data into Books_Users
+INSERT INTO Books_Users (isbn, userID, dateBorrowed, dueDate)
+VALUES
+((SELECT isbn from Books where isbn = '978-1982131739'), (SELECT userID from Users where userID = '1'), "2024-02-22", "2024-03-01"),
+((SELECT isbn from Books where isbn = '978-0061120084'), (SELECT userID from Users where userID = '2'), "2024-02-22", "2024-03-01"),
+((SELECT isbn from Books where isbn = '978-0307474278'), (SELECT userID from Users where userID = '3'), "2024-02-22", "2024-03-01");
+
 -- Insert data into Reviews
 -- Eventually, data will be added from user input through dm.sql
 INSERT INTO Reviews(userID, isbn, rating, reviewText)
