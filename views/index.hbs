@@ -1,6 +1,4 @@
-<!-- index.hbs -->
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<h1>Books</h1>
 
 <table>
 
@@ -52,4 +50,13 @@
     </select>
 
     <input type="submit">
+</form>
+<h2>Search for a Book</h2>
+<p>Search by Book Title using the field below. Partial titles are OK too!</p>
+<form id="search-book-html" method='GET' action='/'>
+    <label for="input-title">Search by Title: </label>
+    <input type="text" name="title" id="input-title-html-search">
+    
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
 </form>

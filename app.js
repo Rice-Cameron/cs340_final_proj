@@ -22,23 +22,52 @@ var db = require('./database/db-connector')
     ROUTES
 */
 app.get('/', function(req, res)
-    {  
-        let query1 = "SELECT * FROM Books;";               // Define our query
+{
+    // Declare Query 1
+    let query1;
 
-        let query2 = "SELECT * FROM Publishers";
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.title === undefined)
+    {
+        query1 = "SELECT * FROM Books;";
+    }
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM Books WHERE title LIKE "${req.query.title}%"`
+    }
 
-            let books = rows;
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM Publishers;";
 
-            db.pool.query(query2, (error, rows, fields) => {
-                let publishers = rows;
-                return res.render('index', { data: books, publishers: publishers});
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the books
+        let books = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            // Save the publishers
+            let publishers = rows;
+
+            let pubmap = {}
+            publishers.map(publisher => {
+                let id = parseInt(publisher.publisherID, 10);
+
+                pubmap[id] = publisher["publisherName"];
             })
 
-            // res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
-        })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query
+            books = books.map(book => {
+                return Object.assign(book, {publisherID: pubmap[book.publisherID]})
+            })
+            
+            return res.render('index', {data: books, publishers: publishers});
+        })
+    })
+});
+
 
 app.post('/add-book-form', function(req, res){
     let data = req.body;
