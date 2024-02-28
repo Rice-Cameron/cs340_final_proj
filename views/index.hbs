@@ -28,3 +28,24 @@
         {{/each}}
     </tbody>
 </table>
+<h2>Add Book</h2>
+<p>To add a new book, please enter it's information below and click `Submit`!</p>
+<form id="add-book-form" method="POST" action="/add-book-form">
+
+    <label for="input-isbn">ISBN: </label>
+    <input type="text" name="input-isbn" id="input-isbn">
+    
+    <label for="input-title">Title: </label>
+    <input type="text" name="input-title" id="input-title">
+    
+    <label for="input-pubyear">Publication Year: </label>
+    <input type="text" name="input-pubyear" id="input-pubyear">
+    
+    <label for="input-copies">Copies Available: </label>
+    <input type="text" name="input-copies" id="input-copies">
+    
+    <label for="input-pubID">Publisher ID: </label>
+    <input type="text" name="input-pubID" id="input-pubID">
+    
+    <input type="submit">
+</form>
