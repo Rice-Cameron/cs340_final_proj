@@ -5,7 +5,7 @@
 */
 
 var express = require('express');   // We are using the express library for the web server
-var app     = express();            // We need to instantiate an express object to interact with the server in our code
+var app = express();            // We need to instantiate an express object to interact with the server in our code
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'))
@@ -25,9 +25,18 @@ app.get('/', function(req, res)
     {  
         let query1 = "SELECT * FROM Books;";               // Define our query
 
+        let query2 = "SELECT * FROM Publishers";
+
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            let books = rows;
+
+            db.pool.query(query2, (error, rows, fields) => {
+                let publishers = rows;
+                return res.render('index', { data: books, publishers: publishers});
+            })
+
+            // res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 

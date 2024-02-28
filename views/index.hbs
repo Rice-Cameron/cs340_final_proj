@@ -44,8 +44,12 @@
     <label for="input-copies">Copies Available: </label>
     <input type="text" name="input-copies" id="input-copies">
     
-    <label for="input-pubID">Publisher ID: </label>
-    <input type="text" name="input-pubID" id="input-pubID">
-    
+    <select name="input-pubID" id="input-pubID">
+        <option value="">Select a Publisher</option>
+        {{#each publishers}}
+        <option value="{{this.publisherID}}">{{this.publisherName}}</option>
+        {{/each}}
+    </select>
+
     <input type="submit">
 </form>
