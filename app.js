@@ -64,7 +64,7 @@ app.get('/', function(req, res)
                 return Object.assign(book, {publisherID: pubmap[book.publisherID]})
             })
             
-            return res.render('index', {data: books, publishers: publishers});
+            return res.render('books', {data: books, publishers: publishers});
         })
     })
 });
