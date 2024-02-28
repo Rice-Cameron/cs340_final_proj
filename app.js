@@ -16,7 +16,8 @@ app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the han
 app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
 // database
-var db = require('./database/db-connector')
+var db = require('./database/db-connector');
+const e = require('express');
 
 /*
     ROUTES
@@ -84,6 +85,55 @@ app.post('/add-book-form', function(req, res){
     })
 
 })
+
+app.put('/put-book-ajax', function(req,res,next){
+    let data = req.body;
+
+    let year = parseInt(data.publisherYear)
+    let copies = parseInt(data.copiesAvailable)
+  
+    let queryUpdateTitle = `UPDATE Books SET title = ? WHERE Books.isbn = ?`;
+    let queryUpdateYear = `UPDATE Books SET publicationYear = ? WHERE Books.isbn = ?`;
+    let queryUpdateCopies = `UPDATE Books SET copiesAvailable = ? WHERE Books.isbn = ?`;
+    let queryUpdatePubID = `UPDATE Books SET publicationID = ? WHERE Books.isbn = ?`;    
+    let selectPublisher = `SELECT * FROM Publishers WHERE publisherID = ?`
+  
+          db.pool.query(queryUpdateTitle, [data['input-title'], data['input-isbn']], function(error, rows, fields){
+              if (error) {
+                console.log(error);
+                res.sendStatus(400);
+              }
+              else
+              {
+                  db.pool.query(queryUpdateYear, [year, data['input-isbn']], function(error, rows, fields) {
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } 
+                      else {
+                        db.pool.query(queryUpdateCopies, [copies, data['input-isbn']], function(error, rows, fields){
+                            if (error){
+                                console.log(error)
+                                res.sendStatus(400)
+                            }
+                            else{
+                                db.pool.query(queryUpdatePubID, [data['input-pubID'], data['input-isbn']], function(error, rows, fields){
+                                    if (error){ 
+                                        console.log(error)
+                                        res.sendStatus(400)
+                                    }
+                                    else{
+                                        res.send(rows);
+                                    }
+                                })
+                            }
+                        })
+                      }
+                  })
+              }
+         }
+    )
+});
 
 app.delete('/delete-book-ajax/', function(req,res,next){
     let data = req.body;

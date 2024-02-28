@@ -20,7 +20,18 @@ function deleteBook(isbn) {
       for (let i = 0, row; row = table.rows[i]; i++) {
          if (table.rows[i].getAttribute("data-value") == isbn) {
               table.deleteRow(i);
+              deleteDropDownMenu(isbn);
               break;
          }
       }
+  }
+
+  function deleteDropDownMenu(isbn){
+    let selectMenu = document.getElementById("mySelect");
+    for (let i = 0; i < selectMenu.length; i++){
+      if (Number(selectMenu.options[i].value) === Number(isbn)){
+        selectMenu[i].remove();
+        break;
+      } 
+    }
   }
