@@ -85,6 +85,57 @@ app.post('/add-book-form', function(req, res){
 
 })
 
+app.delete('/delete-book-ajax/', function(req,res,next){
+    let data = req.body;
+    let isbn = data['isbn'];
+    let deleteBooksAuthors = `DELETE FROM Books_Authors WHERE isbn = ?`
+    let deleteBooksGenres = `DELETE FROM Books_Genres WHERE isbn = ?`
+    let deleteBooksUsers = `DELETE FROM Books_Users WHERE isbn = ?`
+    let deleteBook = `DELETE FROM Books WHERE isbn = ?`;
+    
+  
+  
+          // Run the 1st query
+          db.pool.query(deleteBooksAuthors, [isbn], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              else
+              {
+                  // Run the second query
+                  db.pool.query(deleteBooksGenres, [isbn], function(error, rows, fields) {
+  
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } else {
+                        db.pool.query(deleteBooksUsers, [isbn], function(error, rows, fields){
+                            if (error) {
+                                console.log(error);
+                                res.sendStatus(400)
+                            }
+                            else {
+                                db.pool.query(deleteBook, [isbn], function(error, rows, fields){
+                                    if (error) {
+                                        console.log(error)
+                                        res.sendStatus(400)
+                                    }
+                                    else{
+                                        res.sendStatus(204);
+                                    }
+                                })
+                            }
+                        })
+                      }
+                  })
+              }
+  })});
+
+
 /*
     LISTENER
 */

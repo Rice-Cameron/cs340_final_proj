@@ -1,6 +1,7 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <h1>Books</h1>
 
-<table>
+<table id="book-table">
 
     <thead>
 
@@ -10,22 +11,25 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>delete</th>
         </tr>
     </thead>
 
     <tbody>
 
         {{#each data}}
-        <tr>
+        <tr data-value="{{this.isbn}}">
             <td>{{this.isbn}}</td>
             <td>{{this.title}}</td>
             <td>{{this.publicationYear}}</td>
             <td>{{this.copiesAvailable}}</td>
             <td>{{this.publisherID}}</td>
+            <td><button onclick="deleteBook({{this.isbn}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_book.js"></script>
 <h2>Add Book</h2>
 <p>To add a new book, please enter it's information below and click `Submit`!</p>
 <form id="add-book-form" method="POST" action="/add-book-form">
