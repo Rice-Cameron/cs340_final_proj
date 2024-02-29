@@ -7,6 +7,7 @@ updateBookForm.addEventListener("submit", function (e) {
    
     // Prevent the form from submitting
     e.preventDefault();
+    // debugger;
 
     // Get form fields we need to get data from
     let inputISBN = document.getElementById("mySelect");

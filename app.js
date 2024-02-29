@@ -87,60 +87,54 @@ app.post('/add-book-form', function(req, res){
 })
 
 app.put('/put-book-ajax', function(req,res,next){
+    // debugger;
     let data = req.body;
     
-    // let year = parseInt(data.publisherYear)
-    // let copies = parseInt(data.copiesAvailable)
+    let isbn = data.isbn
+    let title = data.title
+    let pubyear = data.publicationYear
+    let copies = data.copiesAvailable
+    let pubname = data.publisherName
   
     let queryUpdateTitle = `UPDATE Books SET title = ? WHERE Books.isbn = ?`;
     let queryUpdateYear = `UPDATE Books SET publicationYear = ? WHERE Books.isbn = ?`;
     let queryUpdateCopies = `UPDATE Books SET copiesAvailable = ? WHERE Books.isbn = ?`;
-    let queryUpdatePubID = `UPDATE Books SET publisherID = ? WHERE Books.isbn = ?`;    
-    let selectPublisher = `SELECT * FROM Publishers WHERE publisherID = ?`;
+    let queryUpdatePubID = `UPDATE Books SET publisherID = (SELECT publisherID FROM Publishers WHERE Publishers.publisherName = ?) WHERE Books.isbn = ?`;    
   
-          db.pool.query(queryUpdateTitle, [data['input-title-update'], data['input-isbn-update']], function(error, rows, fields){
+          db.pool.query(queryUpdateTitle, [title, isbn], function(error, rows, fields){
               if (error) {
                 console.log(error);
                 res.sendStatus(400);
               }
               else
               {
-                  db.pool.query(queryUpdateYear, [data['input-pubyear-update'], data['input-isbn-update']], function(error, rows, fields) {
+                  db.pool.query(queryUpdateYear, [pubyear, isbn], function(error, rows, fields) {
                       if (error) {
                           console.log(error);
                           res.sendStatus(400);
                       } 
                       else {
-                        db.pool.query(queryUpdateCopies, [data['input-copies-update'], data['input-isbn-update']], function(error, rows, fields){
+                        db.pool.query(queryUpdateCopies, [copies, isbn], function(error, rows, fields) {
                             if (error) {
                                 console.log(error)
                                 res.sendStatus(400)
                             }
                             else{
-                                db.pool.query(queryUpdatePubID, [data['input-pubID-update'], data['input-isbn-update']], function(error, rows, fields){
+                                db.pool.query(queryUpdatePubID, [pubname, isbn], function(error, rows, fields){
                                     if (error) { 
                                         console.log(error)
                                         res.sendStatus(400)
                                     }
                                     else{
-                                        db.pool.query(selectPublisher, [data['input-pubID-update']], function(error, rows, fields){
-                                            if (error) {
-                                                console.log(error)
-                                                res.sendStatus(400)
-                                            }
-                                            else{
-                                                res.send(rows);
-                                            }
-                                        })
+                                        res.send(rows);
                                     }
                                 })
                             }
                         })
-                      }
-                  })
-              }
-         }
-    )
+                    }
+                })
+            }
+        })
 });
 
 app.delete('/delete-book-ajax/', function(req,res,next){
