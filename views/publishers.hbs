@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Publishers</title>
+    <style>
+        #add-publisher {
+            border: 2px solid black;
+            margin-top: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            padding: 10px;
+        }
+
+        #add-publisher h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="site-title">Publishers</h1>
+        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a
+            href="books_authors.html">Books_Authors</a> | <a href="books_genres.html">Books_Genres</a> | <a
+            href="books_users.html">Books_Users</a> | <a href="user.html">Users</a> | <a href="reviews.html">Reviews</a>
+        | <a href="publishers.html">Publishers</a> | <a href="genres.html">Genres</a> | <a
+            href="authors.html">Authors</a>
+        ]
+    </header>
+
+    <section id="add-publisher">
+        <h2>Add New Publisher</h2>
+        <form action="#" method="post">
+            <label for="publisher-name">Publisher Name:</label>
+            <input type="text" id="publisher-name" name="publisher-name" required>
+
+            <input type="submit" value="Add Publisher">
+        </form>
+    </section>
+
+    <div id="table-of-publishers" style="display: block">
+        <h3><strong>List of our publishers:</strong></h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Publisher ID</th>
+                <th>Publisher Name</th>
+            </tr>
+            <tr>
+                <td><button onclick="editPublisher(1)" class="edit-button">Edit</button></td>
+                <td><button onclick="deletePublisher(1)" class="delete-button">Delete</button></td>
+                <td>1</td>
+                <td>Little, Brown and Company</td>
+            </tr>
+            <tr>
+                <td><button onclick="editPublisher(2)" class="edit-button">Edit</button></td>
+                <td><button onclick="deletePublisher(2)" class="delete-button">Delete</button></td>
+                <td>2</td>
+                <td>Harper Perennial Modern Classics</td>
+            </tr>
+            <tr>
+                <td><button onclick="editPublisher(3)" class="edit-button">Edit</button></td>
+                <td><button onclick="deletePublisher(3)" class="delete-button">Delete</button></td>
+                <td>3</td>
+                <td>Penguin Books</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function deletePublisher(id) {
+            // Add your code here for deleting a publisher
+            alert("Functionality for deleting publisher with ID " + id + " is not implemented yet.");
+        }
+        function editPublisher(id) {
+            // Add your code here for editing a publisher
+            alert("Functionality for editing publisher with ID " + id + " is not implemented yet.");
+        }
+    </script>
+</body>
+
+</html>

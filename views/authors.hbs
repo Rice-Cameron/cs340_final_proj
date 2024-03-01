@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Authors</title>
+    <style>
+        #add-author {
+            border: 2px solid black;
+            margin-top: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            padding: 10px;
+        }
+
+        #add-author h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="site-title">Authors</h1>
+        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a
+            href="books_authors.html">Books_Authors</a> | <a href="books_genres.html">Books_Genres</a> | <a
+            href="books_users.html">Books_Users</a> | <a href="user.html">Users</a> | <a href="reviews.html">Reviews</a>
+        | <a href="publishers.html">Publishers</a> | <a href="genres.html">Genres</a> | <a
+            href="authors.html">Authors</a>
+        ]
+    </header>
+
+    <section id="add-author">
+        <h2>Add New Author</h2>
+        <form action="#" method="post">
+            <label for="author-name">Author Name:</label>
+            <input type="text" id="author-name" name="author-name" required>
+
+            <label for="author-birthday">Author Birthday:</label>
+            <input type="text" id="author-birthday" birthday="author-birthday" required>
+
+            <label for="author-biography">Author Biography:</label>
+            <input type="text" id="author-biography" biography="author-biography" required>
+
+            <input type="submit" value="Add Author">
+        </form>
+    </section>
+
+    <div id="table-of-publishers" style="display: block">
+        <h3><strong>List of our publishers:</strong></h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Author ID</th>
+                <th>Author Name</th>
+                <th>Author Birthday</th>
+                <th>Author Biography</th>
+            </tr>
+            <tr>
+                <td><button onclick="editAuthor(1)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteAuthor(1)" class="delete-button">Delete</button></td>
+                <td>1</td>
+                <td>George Orwell</td>
+                <td>1903-06-25</td>
+                <td>British novelist, essayist, journalist, and critic.</td>
+            </tr>
+            <tr>
+                <td><button onclick="editAuthor(2)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteAuthor(2)" class="delete-button">Delete</button></td>
+                <td>2</td>
+                <td>Harper Lee</td>
+                <td>1926-04-28</td>
+                <td>American novelist widely known for "To Kill a Mockingbird".</td>
+            </tr>
+            <tr>
+                <td><button onclick="editAuthor(3)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteAuthor(3)" class="delete-button">Delete</button></td>
+                <td>3</td>
+                <td>J.D. Salinger</td>
+                <td>1919-01-01</td>
+                <td>American writer best known for his novel "The Catcher in the Rye".</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function deleteAuthor(id) {
+            // Add your code here for deleting a publisher
+            alert("Functionality for deleting publisher with ID " + id + " is not implemented yet.");
+        }
+        function editAuthor(id) {
+            // Add your code here for editing a publisher
+            alert("Functionality for editing publisher with ID " + id + " is not implemented yet.");
+        }
+    </script>
+</body>
+
+</html>

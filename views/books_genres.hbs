@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Books Genres</title>
+    <style>
+        #add-book-genres {
+            border: 2px solid black;
+            margin-top: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            padding: 10px;
+        }
+
+        #add-book-genres h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="site-title">Books Genres</h1>
+        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a
+            href="books_authors.html">Books_Authors</a> | <a href="books_genres.html">Books_Genres</a> | <a
+            href="books_users.html">Books_Users</a> | <a href="user.html">Users</a> | <a href="reviews.html">Reviews</a>
+        | <a href="publishers.html">Publishers</a> | <a href="genres.html">Genres</a> | <a
+            href="authors.html">Authors</a>
+        ]
+    </header>
+
+    <section id="add-book-genres">
+        <h2>Add New Books Genres</h2>
+        <form action="#" method="post">
+
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" required>
+
+            <label for="genre-name">Genre Name:</label>
+            <input type="text" id="genre-name" name="genre-name" required>
+
+            <input type="submit" value="Add Books_Genres">
+        </form>
+    </section>
+
+    <div id="table-of-books-genres" style="display: block">
+        <h3><strong>List of Books Genres:</strong></h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>assignment ID</th>
+                <th>ISBN</th>
+                <th>Genre Name</th>
+            </tr>
+            <tr>
+                <td><button onclick="editBooksGenres(1)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteBooksGenres(1)" class="delete-button">Delete</button></td>
+                <td>1</td>
+                <td>978-1982131739</td>
+                <td>Dystopian Fiction</td>
+            </tr>
+            <tr>
+                <td><button onclick="editBooksGenres(2)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteBooksGenres(2)" class="delete-button">Delete</button></td>
+                <td>2</td>
+                <td>978-0061120084</td>
+                <td>Southern Gothic</td>
+            </tr>
+            <tr>
+                <td><button onclick="editBooksGenres(3)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteBooksGenres(3)" class="delete-button">Delete</button></td>
+                <td>3</td>
+                <td>978-0307474278</td>
+                <td>Coming-of-Age Fiction</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function deleteBooksGenres(id) {
+            // Add your code here for deleting a BooksGenres
+            alert("Functionality for deleting BooksGenres with ID " + id + " is not implemented yet.");
+        }
+        function editBooksGenres(id) {
+            // Add your code here for editing a BooksGenres
+            alert("Functionality for editing BooksGenres with ID " + id + " is not implemented yet.");
+        }
+    </script>
+</body>
+
+</html>

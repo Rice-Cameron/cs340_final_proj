@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Genres</title>
+    <style>
+        #add-genre {
+            border: 2px solid black;
+            margin-top: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            padding: 10px;
+        }
+
+        #add-genre h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="site-title">Genres</h1>
+        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a
+            href="books_authors.html">Books_Authors</a> | <a href="books_genres.html">Books_Genres</a> | <a
+            href="books_users.html">Books_Users</a> | <a href="user.html">Users</a> | <a href="reviews.html">Reviews</a>
+        | <a href="publishers.html">Publishers</a> | <a href="genres.html">Genres</a> | <a
+            href="authors.html">Authors</a>
+        ]
+    </header>
+
+    <section id="add-genre">
+        <h2>Add New Genre</h2>
+        <form action="#" method="post">
+
+            <label for="genre-name">Genre Name:</label>
+            <input type="text" id="genre-name" name="genre-name" required>
+
+            <input type="submit" value="Add Genre">
+        </form>
+    </section>
+
+    <div id="table-of-genres" style="display: block">
+        <h3><strong>List of genres:</strong></h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Genre ID</th>
+                <th>Genre Name</th>
+            </tr>
+            <tr>
+                <td><button onclick="editGenre(1)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteGenre(1)" class="delete-button">Delete</button></td>
+                <td>1</td>
+                <td>Dystopian Fiction</td>
+            </tr>
+            <tr>
+                <td><button onclick="editGenre(2)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteGenre(2)" class="delete-button">Delete</button></td>
+                <td>2</td>
+                <td>Southern Gothic</td>
+            </tr>
+            <tr>
+                <td><button onclick="editGenre(3)" class="edit-button">Edit</button></td>
+                <td><button onclick="deleteGenre(3)" class="delete-button">Delete</button></td>
+                <td>3</td>
+                <td>Coming-of-Age Fiction</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function deleteGenre(id) {
+            // Add your code here for deleting a genre
+            alert("Functionality for deleting genre with ID " + id + " is not implemented yet.");
+        }
+        function editGenre(id) {
+            // Add your code here for editing a genre
+            alert("Functionality for editing genre with ID " + id + " is not implemented yet.");
+        }
+    </script>
+</body>
+
+</html>
