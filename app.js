@@ -22,8 +22,7 @@ const e = require('express');
 /*
     ROUTES
 */
-app.get('/', function(req, res)
-{
+app.get('/', function(req, res) {
     let query1;
 
     if (req.query.title === undefined)
@@ -60,6 +59,39 @@ app.get('/', function(req, res)
         })
     })
 });
+
+app.get('/authors', function(req, res){
+    res.render('authors')
+})
+
+app.get('/genres', function(req, res){
+    res.render('genres')  
+})
+
+app.get('/publishers', function(req, res){
+    res.render('publishers')
+})
+
+app.get('/reviews', function(req, res){
+    res.render('reviews')
+})
+
+app.get('/users', function(req, res){
+    res.render('users')
+})
+
+app.get('/books_authors', function(req ,res){
+    res.render('books_authors')
+})
+
+app.get('/books_genres', function(req, res){
+    res.render('books_genres')
+})
+
+app.get('/books_users', function(req, res){
+    res.render('books_users')
+})
+
 
 
 app.post('/add-book-form', function(req, res){

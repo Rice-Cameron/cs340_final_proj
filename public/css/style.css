@@ -1,0 +1,141 @@
+#add-author {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-author h2 {
+    margin-top: 0;
+}
+
+ #add-book-authors {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-book-authors h2 {
+    margin-top: 0;
+}
+#add-book-genres {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-book-genres h2 {
+    margin-top: 0;
+}
+
+#add-book-users {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-book-users h2 {
+    margin-top: 0;
+}
+  #add-user {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-user h2 {
+    margin-top: 0;
+}
+
+#add-review {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-review h2 {
+    margin-top: 0;
+}
+
+#add-publisher {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-publisher h2 {
+    margin-top: 0;
+}
+
+        #add-genre {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-genre h2 {
+    margin-top: 0;
+}
+
+#add-book-form {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#add-book-form h2 {
+    margin-top: 0;
+}
+
+#search-book-html {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#search-book-html h2 {
+    margin-top: 0;
+}
+
+
+#update-book-form-ajax {
+    border: 2px solid black;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#update-book-form-ajax h2 {
+    margin-top: 0;
+}

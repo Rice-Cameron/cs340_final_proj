@@ -1,57 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reviews</title>
-    <style>
-        #add-review {
-            border: 2px solid black;
-            margin-top: 5px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            margin-left: 10px;
-            padding: 10px;
-        }
-
-        #add-review h2 {
-            margin-top: 0;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <h1 class="site-title">Reviews</h1>
-        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a
-            href="books_authors.html">Books_Authors</a> | <a href="books_genres.html">Books_Genres</a> | <a
-            href="books_users.html">Books_Users</a> | <a href="user.html">Users</a> | <a href="reviews.html">Reviews</a>
-        | <a href="publishers.html">Publishers</a> | <a href="genres.html">Genres</a> | <a
-            href="authors.html">Authors</a>
-        ]
-    </header>
-
-    <section id="add-review">
-        <h2>Add New Review</h2>
-        <form action="#" method="post">
-
-            <label for="user-id">User ID:</label>
-            <input type="text" id="user-id" name="user-id" required>
-
-            <label for="isbn">ISBN:</label>
-            <input type="text" id="isbn" name="isbn" required>
-
-            <label for="rating">Rating:</label>
-            <input type="text" id="rating" name="rating" required>
-
-            <label for="reviewText">Review Text:</label>
-            <input type="text" id="reviewText" name="reviewText" required>
-
-            <input type="submit" value="Add Review">
-        </form>
-    </section>
-
+<h1>Reviews</h1>    
     <div id="table-of-reviews" style="display: block">
         <h3><strong>List of Reviews:</strong></h3>
         <table border="1" cellpadding="5">
@@ -94,16 +41,22 @@
         </table>
     </div>
 
-    <script>
-        function deleteReview(id) {
-            // Add your code here for deleting a review
-            alert("Functionality for deleting review with ID " + id + " is not implemented yet.");
-        }
-        function editReview(id) {
-            // Add your code here for editing a review
-            alert("Functionality for editing review with ID " + id + " is not implemented yet.");
-        }
-    </script>
-</body>
+        <section id="add-review">
+        <h2>Add New Review</h2>
+        <form action="#" method="post">
 
-</html>
+            <label for="user-id">User ID:</label>
+            <input type="text" id="user-id" name="user-id" required>
+
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" required>
+
+            <label for="rating">Rating:</label>
+            <input type="text" id="rating" name="rating" required>
+
+            <label for="reviewText">Review Text:</label>
+            <input type="text" id="reviewText" name="reviewText" required>
+
+            <input type="submit" value="Add Review">
+        </form>
+    </section>

@@ -1,53 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Authors</title>
-    <style>
-        #add-author {
-            border: 2px solid black;
-            margin-top: 5px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            margin-left: 10px;
-            padding: 10px;
-        }
-
-        #add-author h2 {
-            margin-top: 0;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <h1 class="site-title">Authors</h1>
-        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a
-            href="books_authors.html">Books_Authors</a> | <a href="books_genres.html">Books_Genres</a> | <a
-            href="books_users.html">Books_Users</a> | <a href="user.html">Users</a> | <a href="reviews.html">Reviews</a>
-        | <a href="publishers.html">Publishers</a> | <a href="genres.html">Genres</a> | <a
-            href="authors.html">Authors</a>
-        ]
-    </header>
-
-    <section id="add-author">
-        <h2>Add New Author</h2>
-        <form action="#" method="post">
-            <label for="author-name">Author Name:</label>
-            <input type="text" id="author-name" name="author-name" required>
-
-            <label for="author-birthday">Author Birthday:</label>
-            <input type="text" id="author-birthday" birthday="author-birthday" required>
-
-            <label for="author-biography">Author Biography:</label>
-            <input type="text" id="author-biography" biography="author-biography" required>
-
-            <input type="submit" value="Add Author">
-        </form>
-    </section>
-
+    <h1>Authors</h1>
     <div id="table-of-publishers" style="display: block">
         <h3><strong>List of our publishers:</strong></h3>
         <table border="1" cellpadding="5">
@@ -85,17 +36,18 @@
             </tr>
         </table>
     </div>
+     <section id="add-author">
+        <h2>Add New Author</h2>
+        <form action="#" method="post">
+            <label for="author-name">Author Name:</label>
+            <input type="text" id="author-name" name="author-name" required>
 
-    <script>
-        function deleteAuthor(id) {
-            // Add your code here for deleting a publisher
-            alert("Functionality for deleting publisher with ID " + id + " is not implemented yet.");
-        }
-        function editAuthor(id) {
-            // Add your code here for editing a publisher
-            alert("Functionality for editing publisher with ID " + id + " is not implemented yet.");
-        }
-    </script>
-</body>
+            <label for="author-birthday">Author Birthday:</label>
+            <input type="text" id="author-birthday" birthday="author-birthday" required>
 
-</html>
+            <label for="author-biography">Author Biography:</label>
+            <input type="text" id="author-biography" biography="author-biography" required>
+
+            <input type="submit" value="Add Author">
+        </form>
+    </section>

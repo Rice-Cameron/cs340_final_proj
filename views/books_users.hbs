@@ -1,57 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Books Users</title>
-    <style>
-        #add-book-users {
-            border: 2px solid black;
-            margin-top: 5px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            margin-left: 10px;
-            padding: 10px;
-        }
-
-        #add-book-users h2 {
-            margin-top: 0;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <h1 class="site-title">Books Users</h1>
-        [ <a href="index.html">Home</a> | <a href="books.html">Books</a> | <a
-            href="books_authors.html">Books_Authors</a> | <a href="books_genres.html">Books_Genres</a> | <a
-            href="books_users.html">Books_Users</a> | <a href="user.html">Users</a> | <a href="reviews.html">Reviews</a>
-        | <a href="publishers.html">Publishers</a> | <a href="genres.html">Genres</a> | <a
-            href="authors.html">Authors</a>
-        ]
-    </header>
-
-    <section id="add-book-users">
-        <h2>Add New Books Users</h2>
-        <form action="#" method="post">
-
-            <label for="book-isbn">Book ISBN:</label>
-            <input type="text" id="book-isbn" name="book-isbn" required>
-
-            <label for="user-id">User ID:</label>
-            <input type="text" id="user-id" name="user-id" required>
-
-            <label for="date-borrowed">Date Borrowed:</label>
-            <input type="text" id="date-borrowed" name="date-borrowed" required>
-
-            <label for="due-date">Due Date:</label>
-            <input type="text" id="due-date" name="due-date" required>
-
-            <input type="submit" value="Add Books_Users">
-        </form>
-    </section>
-
+<h1>Books Users</h1>
     <div id="table-of-books-users" style="display: block">
         <h3><strong>List of Books Users:</strong></h3>
         <table border="1" cellpadding="5">
@@ -89,17 +36,22 @@
             </tr>
         </table>
     </div>
+        <section id="add-book-users">
+        <h2>Add New Books Users</h2>
+        <form action="#" method="post">
 
-    <script>
-        function deleteBooksUsers(id) {
-            // Add your code here for deleting a BooksUsers
-            alert("Functionality for deleting BooksUsers with ID " + id + " is not implemented yet.");
-        }
-        function editBooksUsers(id) {
-            // Add your code here for editing a BooksUsers
-            alert("Functionality for editing BooksUsers with ID " + id + " is not implemented yet.");
-        }
-    </script>
-</body>
+            <label for="book-isbn">Book ISBN:</label>
+            <input type="text" id="book-isbn" name="book-isbn" required>
 
-</html>
+            <label for="user-id">User ID:</label>
+            <input type="text" id="user-id" name="user-id" required>
+
+            <label for="date-borrowed">Date Borrowed:</label>
+            <input type="text" id="date-borrowed" name="date-borrowed" required>
+
+            <label for="due-date">Due Date:</label>
+            <input type="text" id="due-date" name="due-date" required>
+
+            <input type="submit" value="Add Books_Users">
+        </form>
+    </section>
