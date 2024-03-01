@@ -72,24 +72,36 @@ SELECT * FROM Books_Users
 WHERE userID = :userID_from_account;
 
 -- Query to get all authors for a book
-SELECT * FROM Books_Authors
+SELECT Authors.*
+FROM Authors
+JOIN Books_Authors ON Authors.authorID = Books_Authors.authorID
 WHERE isbn = :isbn_from_book_title;
 
 -- Query to get all genres for a book
-SELECT * FROM Books_Genres
+SELECT Genres.*
+FROM Genres
+JOIN Books_Genres ON Genres.genreID = Books_Genres.genreID
 WHERE isbn = :isbn_from_book_title;
+
 
 -- Query to get all reviews for a book
 SELECT * FROM Reviews
 WHERE isbn = :isbn_from_book_title;
 
 -- Query to get all books by a specific author
-SELECT * FROM Books_Authors
-WHERE authorID = :authorID_from_author_name;
+SELECT Books.*
+FROM Books
+JOIN Books_Authors ON Books.isbn = Books_Authors.isbn
+JOIN Authors ON Authors.authorID = Books_Authors.authorID
+WHERE Authors.name = :author_name_input;
 
 -- Query to get all books in a specific genre
-SELECT * FROM Books_Genres
-WHERE genreID = :genreID_from_genre_name;
+SELECT Books.*
+FROM Books
+JOIN Books_Genres ON Books.isbn = Books_Genres.isbn
+JOIN Genres ON Genres.genreID = Books_Genres.genreID
+WHERE Genres.genreName = :genre_name_input;
+
 
 -- Query to get all books published by a specific publisher
 SELECT * FROM Books
