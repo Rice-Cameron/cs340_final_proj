@@ -2,7 +2,6 @@
 
 <h1>Authors</h1>
 
-<h3>List of authors:</h3>
 <table id="author-table">
     <thead>
         <tr>
@@ -21,12 +20,13 @@
             <td>{{this.name}}</td>
             <td>{{this.birthdate}}</td>
             <td>{{this.biography}}</td>
-            <td><button onclick="deleteBook({{this.authorID}})">Delete</button></td>
+            <td><button onclick="deleteAuthor({{this.authorID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 <script src="./js/delete_author.js"></script>
+
 <section id="add-author">
     <h2>Add New Author</h2>
     <form id="add-author-form" action="/add-author-form" method="POST">

@@ -7,10 +7,6 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get("/authors", (req, res) => {
-  res.render("authors");
-});
-
 router.get("/authors", function (req, res) {
   let query1 = "SELECT * FROM Authors;";
 

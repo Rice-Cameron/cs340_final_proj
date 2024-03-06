@@ -1,7 +1,7 @@
 function deleteAuthor(authorID) {
   let link = "/delete-author-ajax/";
   let data = {
-    id: authorID,
+    authorID: authorID,
   };
 
   $.ajax({
@@ -10,26 +10,26 @@ function deleteAuthor(authorID) {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     success: function (result) {
-      deleteRow(isbn);
+      deleteRow(authorID);
     },
   });
 }
 
-function deleteRow(isbn) {
+function deleteRow(authorID) {
   let table = document.getElementById("author-table");
   for (let i = 0, row; (row = table.rows[i]); i++) {
-    if (table.rows[i].getAttribute("data-value") == id) {
+    if (table.rows[i].getAttribute("data-value") == authorID) {
       table.deleteRow(i);
-      deleteDropDownMenu(id);
+      deleteDropDownMenu(authorID);
       break;
     }
   }
 }
 
-function deleteDropDownMenu(id) {
+function deleteDropDownMenu(authorID) {
   let selectMenu = document.getElementById("mySelect");
   for (let i = 0; i < selectMenu.length; i++) {
-    if (Number(selectMenu.options[i].value) === Number(id)) {
+    if (Number(selectMenu.options[i].value) === Number(authorID)) {
       selectMenu[i].remove();
       break;
     }
