@@ -16,25 +16,23 @@ router.get('/authors', (req, res) => {
 
 router.get('/authors', function(req, res) {
   let query1 = "SELECT * FROM Authors;";
-
   
   db.pool.query(query1, function(error, rows, fields){
-    let 
-    return res.render('books', {data: books, publishers: publishers});
+    return res.render('authors', {data: rows});
   })
 });
 
-router.post('/add-book-form', function(req, res){
+router.post('/add-author-form', function(req, res){
   let data = req.body;
 
-  query1 = `INSERT INTO Books (isbn, title, publicationYear, copiesAvailable, publisherID) VALUES ('${data['input-isbn']}', '${data['input-title']}', '${data['input-pubyear']}', '${data['input-copies']}', '${data['input-pubID']}')`;
+  query1 = `INSERT INTO Authors (name, birthdate, biography) VALUES ('${data['input-name']}', '${data['input-birthdate']}', '${data['input-biography']}')`;
   db.pool.query(query1, function(error, rows, fields){
       if(error){
           console.log(error)
           res.sendStatus(400)
       }
       else{
-          res.redirect('/books');
+          res.redirect('/authors');
       }
   })
 
