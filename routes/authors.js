@@ -34,4 +34,19 @@ router.post("/add-author-form", function (req, res) {
   });
 });
 
+router.delete('/delete-author-ajax/', function(req, res){
+  let data = req.body;
+  let query = `DELETE FROM Authors WHERE authorID = ?`;
+    db.pool.query(query, [data.authorID], function(error, rows, fields){
+        if(error){
+        console.log(error);
+        res.sendStatus(400);
+        }
+        else{
+        res.sendStatus(204);
+        }
+    });
+})
+
+
 module.exports = router;
