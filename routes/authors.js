@@ -12,6 +12,10 @@ router.get("/authors", function (req, res) {
 
   db.pool.query(query1, function (error, rows, fields) {
     console.log(rows)
+    // remove time from birthdate
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].birthdate = rows[i].birthdate.toISOString().split('T')[0];
+    }
     return res.render("authors", { data: rows });
   });
 });
