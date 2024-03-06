@@ -1,20 +1,20 @@
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <h1>Authors</h1>
-    <div id="table-of-authors" style="display: block">
-        <h3><strong>List of authors:</strong></h3>
-        <table id="authors-table">
-            <thead>
-                <tr>
-                    {{#each data.[0]}}
-                    <th>
-                        {{@key}}
-                    </th>
-                    {{/each}}
-                    <th>delete</th>
-                </t>
-            </thead>
-            <tbody>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+<h1>Authors</h1>
+
+<h3>List of authors:</h3>
+<table id="author-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
         {{#each data}}
         <tr data-value="{{this.authorID}}">
             <td>{{this.authorID}}</td>
@@ -25,21 +25,20 @@
         </tr>
         {{/each}}
     </tbody>
-    </table>
-    <script src="./js/delete_author.js"></script>
-    </div>
-     <section id="add-author">
-        <h2>Add New Author</h2>
-        <form id="add-author-form" action="/add-author-form" method="POST">
-            <label for="author-name">Author Name:</label>
-            <input type="text" id="author-name" name="author-name" required>
+</table>
+<script src="./js/delete_author.js"></script>
+<section id="add-author">
+    <h2>Add New Author</h2>
+    <form id="add-author-form" action="/add-author-form" method="POST">
+        <label for="input-name">Author Name:</label>
+        <input type="text" id="input-name" name="input-name" required>
 
-            <label for="author-birthday">Author Birthday:</label>
-            <input type="date" id="author-birthday" birthday="author-birthday" required>
+        <label for="input-birthday">Author Birthday:</label>
+        <input type="date" id="input-birthday" name="input-birthday" required>
 
-            <label for="author-biography">Author Biography:</label>
-            <textarea id="author-biography" biography="author-biography" rows="2" cols="50" required></textarea>
+        <label for="input-biography">Author Biography:</label>
+        <textarea id="input-biography" name="input-biography" rows="2" cols="50" required></textarea>
 
-            <input type="submit" value="Add Author">
-        </form>
-    </section>
+        <input type="submit" value="Add Author">
+    </form>
+</section>
