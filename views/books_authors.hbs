@@ -1,47 +1,49 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <h1>Books Authors</h1>
-    <div id="table-of-books-authors" style="display: block">
-        <h3><strong>List of Books Authors:</strong></h3>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Authorship ID</th>
-                <th>Book ISBN</th>
-                <th>Author Name</th>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksAuthors(1)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksAuthors(1)" class="delete-button">Delete</button></td>
-                <td>1</td>
-                <td>978-1982131739</td>
-                <td>George Orwell</td>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksAuthors(2)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksAuthors(2)" class="delete-button">Delete</button></td>
-                <td>2</td>
-                <td>978-0061120084</td>
-                <td>Harper Lee</td>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksAuthors(3)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksAuthors(3)" class="delete-button">Delete</button></td>
-                <td>3</td>
-                <td>978-0307474278</td>
-                <td>J.D. Salinger</td>
-            </tr>
-        </table>
-    </div>
-        <section id="add-book-authors">
-        <h2>Add New Books Authors</h2>
-        <form action="#" method="post">
 
-            <label for="book-isbn">Book ISBN:</label>
-            <input type="text" id="book-isbn" name="book-isbn" required>
+<table id="books-authors-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value="{{this.authorshipID}}">
+            <td>{{this.authorshipID}}</td>
+            <td>{{this.isbn}}</td>
+            <td>{{this.authorID}}</td>
+            <td><button onclick="deleteBooksAuthors('{{this.authorshipID}}')">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_books_authors.js"></script>
 
-            <label for="author-name">Author Name:</label>
-            <input type="text" id="author-name" name="author-name" required>
+<section id="add-books-authors">
+    <h2>Add New Books Authors Relationship</h2>
+    <form id="add-books-authors-form" action="/add-books-authors-form" method="POST">
+        <label for="input-isbn">Book: </label>
+        <select name="input-isbn" id="mySelect">
+            <option>Select a Book</option>
+            {{#each books}}
+            <option value="{{this.isbn}}">{{this.title}}</option>
+            {{/each}}
+        </select>
 
-            <input type="submit" value="Add Books_Authors">
-        </form>
-    </section>
+        <select name="input-authorID" id="input-authorID">
+            <option>Select an Author</option>
+            {{#each authors}}
+            <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+
+        <input type="submit" value="Add Books_Authors">
+    </form>
+</section>
