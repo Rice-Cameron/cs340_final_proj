@@ -60,11 +60,11 @@ router.get('/books_users', (req, res) => {
 
 router.post('/add-books-users-form', (req, res) => {
     let data = req.body;
+    let dueDate = data["input-dueDate"]
     let query1
-    console.log(data.dueDate)
     // check if due date is empty
-    if (data.dueDate === '') {
-        data.dueDate = null;
+    if (dueDate === '') {
+        dueDate = null;
     }
 
     let user = `SELECT userID FROM Users where userID = '${data["input-userID"]}'`
@@ -73,7 +73,7 @@ router.post('/add-books-users-form', (req, res) => {
         let book = `SELECT isbn FROM Books where isbn = '${data["input-isbn"]}'`
         db.pool.query(book, function(error, rows, fields){
             let isbn = rows[0].isbn
-            if (data.dueDate == null){
+            if (dueDate == null){
                 query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed) VALUES ('${isbn}', '${userID}', '${data["input-dateBorrowed"]}')`
             }
             else{
