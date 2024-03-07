@@ -20,17 +20,6 @@ function deleteRow(authorID) {
   for (let i = 0, row; (row = table.rows[i]); i++) {
     if (table.rows[i].getAttribute("data-value") == authorID) {
       table.deleteRow(i);
-      deleteDropDownMenu(authorID);
-      break;
-    }
-  }
-}
-
-function deleteDropDownMenu(authorID) {
-  let selectMenu = document.getElementById("mySelect");
-  for (let i = 0; i < selectMenu.length; i++) {
-    if (Number(selectMenu.options[i].value) === Number(authorID)) {
-      selectMenu[i].remove();
       break;
     }
   }
