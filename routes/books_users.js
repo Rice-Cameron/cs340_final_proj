@@ -30,8 +30,8 @@ router.get('/books_users', (req, res) => {
                 // Map isbn to a title
                 let bookmap = {}
                 books.map(book => {
-                    let id = parseInt(book.isbn, 10);
-                    bookmap[id] = book["title"];
+                    let isbn = book.isbn;
+                    bookmap[isbn] = book["title"];
                 })
 
                 // Map userID to a name
@@ -50,7 +50,7 @@ router.get('/books_users', (req, res) => {
                 })
 
                 booksUsers = booksUsers.map(bu => {
-                    return Object.assign(bu, {userID: usermap[bu.userID]})
+                    return Object.assign(bu, {userID: usermap[bu.userID], title: bookmap[bu.isbn]})
                 })
                 return res.render('books_users', { data: booksUsers, books: books, users: users });
             })
