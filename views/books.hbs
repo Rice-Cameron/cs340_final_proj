@@ -24,7 +24,7 @@
             <td>{{this.publicationYear}}</td>
             <td>{{this.copiesAvailable}}</td>
             <td>{{this.publisherID}}</td>
-            <td><button onclick="deleteBook({{this.isbn}})">Delete</button></td>
+            <td><button onclick="deleteBook('{{this.isbn}}')">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>

@@ -40,16 +40,14 @@ router.get('/books', function(req, res) {
             books = books.map(book => {
                 return Object.assign(book, {publisherID: pubmap[book.publisherID]})
             })
-            
             return res.render('books', {data: books, publishers: publishers});
         })
     })
 });
 
 router.post('/add-book-form', function(req, res){
-    let data = req.body;
+    let data = JSON.stringify(req.body);
     let isbn = data['input-isbn']
-    isbn.toString()
     query1 = `INSERT INTO Books (isbn, title, publicationYear, copiesAvailable, publisherID) VALUES ('${isbn}', '${data['input-title']}', '${data['input-pubyear']}', '${data['input-copies']}', '${data['input-pubID']}')`;
     db.pool.query(query1, function(error, rows, fields){
         if(error){
@@ -64,13 +62,13 @@ router.post('/add-book-form', function(req, res){
 })
 
 router.put('/put-book-ajax', function(req,res,next){
-    let data = req.body;
+    let data = JSON.stringify(req.body);
     
-    let isbn = data.isbn.toString()
-    let title = data.title.toString()
-    let pubyear = data.publicationYear.toString()
-    let copies = data.copiesAvailable.toString()
-    let pubname = data.publisherName.toString()
+    let isbn = data.isbn
+    let title = data.title
+    let pubyear = data.publicationYear
+    let copies = data.copiesAvailable
+    let pubname = data.publisherName
   
     let queryUpdateTitle = `UPDATE Books SET title = ? WHERE Books.isbn = ?`;
     let queryUpdateYear = `UPDATE Books SET publicationYear = ? WHERE Books.isbn = ?`;
@@ -115,7 +113,7 @@ router.put('/put-book-ajax', function(req,res,next){
 
 router.delete('/delete-book-ajax/', function(req,res){
     let data = req.body;
-    let isbn = data['isbn'];
+    let isbn = data['isbn'].toString();
     console.log(isbn)
     let deleteBooksAuthors = `DELETE FROM Books_Authors WHERE isbn = ?`
     let deleteBooksGenres = `DELETE FROM Books_Genres WHERE isbn = ?`
