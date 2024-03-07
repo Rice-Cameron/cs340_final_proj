@@ -26,13 +26,13 @@ router.post('/add-user-form', (req, res) => {
     }
     let query1;
     // if address is null, don't insert
-    if(data["input-address"] == null){
+    if(data["input-address"] == null && data["input-phoneNumber"] != null){
         query1 = `INSERT INTO Users (name, email, phoneNumber) 
                 VALUES 
                 ('${data["input-name"]}', '${data["input-email"]}', '${data["input-phoneNumber"]}')`
     }
     // if phoneNumber is null, don't insert
-    else if(data["input-phoneNumber"] == null){
+    else if(data["input-phoneNumber"] == null && data["input-address"] != null){
         query1 = `INSERT INTO Users (name, address, email) 
                 VALUES 
                 ('${data["input-name"]}', '${data["input-address"]}', '${data["input-email"]}')`
@@ -63,7 +63,6 @@ router.post('/add-user-form', (req, res) => {
 
 router.delete('/delete-user-ajax/', (req, res) => {
   let data = req.body
-    console.log(data.userID)
     let query = `DELETE FROM Users WHERE userID = ?`
     db.pool.query(query, [data.userID], function(error, rows, fields){
         if(error){
