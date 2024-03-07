@@ -23,12 +23,19 @@ router.get('/books_authors', (req, res) => {
       db.pool.query(query3, function(error, rows, fields){
         let authors = rows;
         
+        // Remove trailing info on birthdate
+        for (let i = 0; i < authors.length; i++) {
+          authors[i].birthdate = authors[i].birthdate.toISOString().split('T')[0];
+        }
+        
+        // Map isbn to a title
         let bookmap = {}   
         books.map(book => {
           let isbn = book.isbn;
           bookmap[isbn] = book["title"];
         })
         
+        // Map authorID to a name
         let authormap = {}
         authors.map(author => {
           let id = parseInt(author.authorID, 10);
@@ -43,10 +50,10 @@ router.get('/books_authors', (req, res) => {
           return Object.assign(author, {name: authormap[author.authorID]})
         })
 
-        for (let i = 0; i < authors.length; i++) {
-          authors[i].birthdate = authors[i].birthdate.toISOString().split('T')[0];
-        }
-        
+        booksAuthors = booksAuthors.map(ba => {
+          return Object.assign(ba, {authorID: authormap[ba.authorID]})
+        })
+        console.log(booksAuthors)
         return res.render('books_authors', { data: booksAuthors, books: books, authors: authors });
       })      
     })

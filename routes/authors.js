@@ -11,7 +11,8 @@ router.get("/authors", function (req, res) {
   let query1 = "SELECT * FROM Authors;";
 
   db.pool.query(query1, function (error, rows, fields) {
-    // remove time from birthdate
+    
+    // Remove trailing info on birthdate
     for (let i = 0; i < rows.length; i++) {
       rows[i].birthdate = rows[i].birthdate.toISOString().split('T')[0];
     }
