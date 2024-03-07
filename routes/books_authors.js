@@ -1,9 +1,11 @@
-var db = require('../database/db-connector')
-const { parse } = require('handlebars')
+// Camerons
+var db = require('../database/db-connector');
+const router = express.Router();
+const express = require("express");
 
 router.use((req, res, next) => {
     next()
-  })
+});
 
 
 router.get('/books_authors', (req, res) => {
@@ -58,10 +60,10 @@ router.get('/books_authors', (req, res) => {
 
 router.post("/add-books-authors-form", function (req, res) {
   let data = req.body;
-  let q = `SELECT authorID FROM Authors where name = ?`
-  db.pool.query(q, function(error, rows, fields){
+  let query1 = `SELECT authorID FROM Authors where name = '${data["input-authorID"]}'`
+  db.pool.query(query1, function(error, rows, fields){
     let id = rows[0].authorID;
-    query2 = `INSERT INTO Books_Authors (isbn, authorID) VALUES ('${data["input-isbn"]}', '${id}')`;
+    let query2 = `INSERT INTO Books_Authors (isbn, authorID) VALUES ('${data["input-isbn"]}', '${id}')`;
     db.pool.query(query2, function (error, rows, fields) {
       if (error) {
         console.log(error);
@@ -71,7 +73,20 @@ router.post("/add-books-authors-form", function (req, res) {
       }
     });
   })
-
 });
 
-module.exports = router
+router.delete('/delete-books-authors-ajax/', function(req, res){
+  let data = req.body;
+  let query = `DELETE FROM Books_Authors WHERE authorshipID = ?`;
+  db.pool.query(query, [data.authorshipID], function(error, rows, fields){
+    if(error){
+      console.log(error);
+      res.sendStatus(400);
+    }
+    else{
+      res.sendStatus(204);
+    }
+  });
+})
+
+module.exports = router;

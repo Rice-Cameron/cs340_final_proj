@@ -1,5 +1,5 @@
 function deleteAuthor(authorshipID) {
-    let link = "/delete-author-ajax/";
+    let link = "/delete-books-authors-ajax/";
     let data = {
         authorshipID: authorshipID,
     };
