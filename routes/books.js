@@ -46,7 +46,7 @@ router.get('/books', function(req, res) {
 });
 
 router.post('/add-book-form', function(req, res){
-    let data = JSON.stringify(req.body);
+    let data = req.body;
     let isbn = data['input-isbn']
     query1 = `INSERT INTO Books (isbn, title, publicationYear, copiesAvailable, publisherID) VALUES ('${isbn}', '${data['input-title']}', '${data['input-pubyear']}', '${data['input-copies']}', '${data['input-pubID']}')`;
     db.pool.query(query1, function(error, rows, fields){
@@ -62,7 +62,7 @@ router.post('/add-book-form', function(req, res){
 })
 
 router.put('/put-book-ajax', function(req,res,next){
-    let data = JSON.stringify(req.body);
+    let data = req.body;
     
     let isbn = data.isbn
     let title = data.title
@@ -113,8 +113,7 @@ router.put('/put-book-ajax', function(req,res,next){
 
 router.delete('/delete-book-ajax/', function(req,res){
     let data = req.body;
-    let isbn = data['isbn'].toString();
-    console.log(isbn)
+    let isbn = data['isbn']
     let deleteBooksAuthors = `DELETE FROM Books_Authors WHERE isbn = ?`
     let deleteBooksGenres = `DELETE FROM Books_Genres WHERE isbn = ?`
     let deleteBooksUsers = `DELETE FROM Books_Users WHERE isbn = ?`
