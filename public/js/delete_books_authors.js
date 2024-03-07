@@ -16,7 +16,7 @@ function deleteAuthor(authorshipID) {
   }
   
   function deleteRow(authorshipID) {
-    let table = document.getElementById("author-table");
+    let table = document.getElementById("books-authors-table");
     for (let i = 0, row; (row = table.rows[i]); i++) {
       if (table.rows[i].getAttribute("data-value") == authorshipID) {
         table.deleteRow(i);
