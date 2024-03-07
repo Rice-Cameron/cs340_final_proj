@@ -60,27 +60,33 @@ router.get('/books_users', (req, res) => {
 
 router.post('/add-books-users-form', (req, res) => {
     let data = req.body;
+    let query1
 
     // check if due date is empty
     if (data.dueDate === '') {
         data.dueDate = null;
     }
 
-    let user = `SELECT userID FROM Users where name = '${data["input-userID"]}'`
-
-    let query1
-    if (data.dueDate == null){
-        query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed) VALUES ('${data["input-isbn"]}', '${user}', '${data["input-dateBorrowed"]}')`
-    }
-    else{
-        query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed, dueDate) VALUES ('${data["input-isbn"]}', '${user}', '${data["input-dateBorrowed"]}', '${data["input-dueDate"]}')`
-    }
-    db.pool.query(query1, [data.isbn, data.userID], function(error, rows, fields){
-        if (error) {
-            res.status(500).send(error);
-        } else {
-            res.redirect('/books_users');
-        }
+    let user = `SELECT userID FROM Users where userID = '${data["input-userID"]}'`
+    db.pool.query(user, function(error, rows, fields){
+        let userID  = rows[0].userID
+        let book = `SELECT isbn FROM Books where isbn = '${data["input-isbn"]}'`
+        db.pool.query(book, function(error, rows, fields){
+            let isbn = rows[0].isbn
+            if (data.dueDate == null){
+                query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed) VALUES ('${isbn}', '${userID}', '${data["input-dateBorrowed"]}')`
+            }
+            else{
+                query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed, dueDate) VALUES ('${isbn}', '${userID}', '${data["input-dateBorrowed"]}', '${data["input-dueDate"]}')`
+            }
+            db.pool.query(query1, function(error, rows, fields){
+                if (error) {
+                    res.status(500).send(error);
+                } else {
+                    res.redirect('/books_users');
+                }
+            })
+        })
     });
 })
 
