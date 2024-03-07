@@ -67,7 +67,7 @@ router.post('/add-books-users-form', (req, res) => {
     }
 
     let user = `SELECT userID FROM Users where name = '${data["input-userID"]}'`
-    let book = `SELECT isbn FROM Books where title = '${data["input-isbn"]}'`
+    let book = `SELECT isbn FROM Books where isbn = '${data["input-isbn"]}'`
 
     let query1
     if (data.dueDate == null){
