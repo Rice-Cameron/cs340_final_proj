@@ -65,12 +65,16 @@ router.post('/add-books-users-form', (req, res) => {
     if (data.dueDate === '') {
         data.dueDate = null;
     }
+
+    let user = `SELECT userID FROM Users where name = '${data["input-userID"]}'`
+    let book = `SELECT isbn FROM Books where title = '${data["input-isbn"]}'`
+
     let query1
     if (data.dueDate == null){
-        query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed) VALUES ('${data["input-isbn"]}', '${data["input-userID"]}', '${data["input-dateBorrowed"]}')`
+        query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed) VALUES ('${book}', '${user}', '${data["input-dateBorrowed"]}')`
     }
     else{
-        query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed, dueDate) VALUES ('${data["input-isbn"]}', '${data["input-userID"]}', '${data["input-dateBorrowed"]}', '${data["input-dueDate"]}')`
+        query1 = `INSERT INTO Books_Users (isbn, userID, dateBorrowed, dueDate) VALUES ('${book}', '${user}', '${data["input-dateBorrowed"]}', '${data["input-dueDate"]}')`
     }
     db.pool.query(query1, [data.isbn, data.userID], function(error, rows, fields){
         if (error) {
