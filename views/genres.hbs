@@ -1,40 +1,36 @@
-<h1>Genres</h1>    
-    <div id="table-of-genres" style="display: block">
-        <h3><strong>List of genres:</strong></h3>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Genre ID</th>
-                <th>Genre Name</th>
-            </tr>
-            <tr>
-                <td><button onclick="editGenre(1)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteGenre(1)" class="delete-button">Delete</button></td>
-                <td>1</td>
-                <td>Dystopian Fiction</td>
-            </tr>
-            <tr>
-                <td><button onclick="editGenre(2)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteGenre(2)" class="delete-button">Delete</button></td>
-                <td>2</td>
-                <td>Southern Gothic</td>
-            </tr>
-            <tr>
-                <td><button onclick="editGenre(3)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteGenre(3)" class="delete-button">Delete</button></td>
-                <td>3</td>
-                <td>Coming-of-Age Fiction</td>
-            </tr>
-        </table>
-    </div>
-        <section id="add-genre">
-        <h2>Add New Genre</h2>
-        <form action="#" method="post">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-            <label for="genre-name">Genre Name:</label>
-            <input type="text" id="genre-name" name="genre-name" required>
+<h1>Genres</h1>
 
-            <input type="submit" value="Add Genre">
-        </form>
-    </section>
+<table id="genre-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value="{{this.genreID}}">
+            <td>{{this.genreID}}</td>
+            <td>{{this.genreName}}</td>
+            <td><button onclick="deleteGenre('{{this.genreID}}')">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_genre.js"></script>
+
+<section id="add-genre">
+    <h2>Add New Genre</h2>
+    <form id="add-genre-form" action="/add-genre-form" method="POST">
+        <label for="input-name">Genre Name:</label>
+        <input type="text" id="input-name" name="input-name" required>
+
+        <input type="submit" value="Add Genre">
+    </form>
+</section>
