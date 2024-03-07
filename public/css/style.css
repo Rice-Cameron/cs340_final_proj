@@ -8,7 +8,7 @@
 }
 
 table {
-    border-collapse: separate;
+    border-collapse: collapse;
 }
 
 table th, table td {
