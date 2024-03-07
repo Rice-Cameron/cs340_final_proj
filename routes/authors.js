@@ -22,7 +22,9 @@ router.get("/authors", function (req, res) {
 
 router.post("/add-author-form", function (req, res) {
   let data = req.body;
-  query1 = `INSERT INTO Authors (name, birthdate, biography) VALUES ('${data["input-name"]}', '${data["input-birthdate"]}', '${data["input-biography"]}')`;
+  let query1 = `INSERT INTO Authors (name, birthdate, biography) 
+                VALUES 
+                ('${data["input-name"]}', '${data["input-birthdate"]}', '${data["input-biography"]}')`;
   db.pool.query(query1, function (error, rows, fields) {
     if (error) {
       console.log(error);

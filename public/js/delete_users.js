@@ -16,7 +16,7 @@ function deleteUser(userID) {
 }
 
 function deleteRow(userID) {
-    let table = document.getElementById("user-table");
+    let table = document.getElementById("users-table");
     for (let i = 0, row; (row = table.rows[i]); i++) {
         if (table.rows[i].getAttribute("data-value") == userID) {
             table.deleteRow(i);
