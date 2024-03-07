@@ -61,7 +61,7 @@ router.get('/books_users', (req, res) => {
 router.post('/add-books-users-form', (req, res) => {
     let data = req.body;
     let query1
-
+    console.log(data.dueDate)
     // check if due date is empty
     if (data.dueDate === '') {
         data.dueDate = null;
