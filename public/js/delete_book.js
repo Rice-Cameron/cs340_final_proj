@@ -3,7 +3,6 @@ function deleteBook(isbn) {
     let data = {
         isbn: isbn
     };
-  
     $.ajax({
       url: link,
       type: 'DELETE',

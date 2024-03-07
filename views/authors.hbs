@@ -1,53 +1,44 @@
-    <h1>Authors</h1>
-    <div id="table-of-publishers" style="display: block">
-        <h3><strong>List of our publishers:</strong></h3>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Author ID</th>
-                <th>Author Name</th>
-                <th>Author Birthday</th>
-                <th>Author Biography</th>
-            </tr>
-            <tr>
-                <td><button onclick="editAuthor(1)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteAuthor(1)" class="delete-button">Delete</button></td>
-                <td>1</td>
-                <td>George Orwell</td>
-                <td>1903-06-25</td>
-                <td>British novelist, essayist, journalist, and critic.</td>
-            </tr>
-            <tr>
-                <td><button onclick="editAuthor(2)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteAuthor(2)" class="delete-button">Delete</button></td>
-                <td>2</td>
-                <td>Harper Lee</td>
-                <td>1926-04-28</td>
-                <td>American novelist widely known for "To Kill a Mockingbird".</td>
-            </tr>
-            <tr>
-                <td><button onclick="editAuthor(3)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteAuthor(3)" class="delete-button">Delete</button></td>
-                <td>3</td>
-                <td>J.D. Salinger</td>
-                <td>1919-01-01</td>
-                <td>American writer best known for his novel "The Catcher in the Rye".</td>
-            </tr>
-        </table>
-    </div>
-     <section id="add-author">
-        <h2>Add New Author</h2>
-        <form action="#" method="post">
-            <label for="author-name">Author Name:</label>
-            <input type="text" id="author-name" name="author-name" required>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-            <label for="author-birthday">Author Birthday:</label>
-            <input type="text" id="author-birthday" birthday="author-birthday" required>
+<h1>Authors</h1>
 
-            <label for="author-biography">Author Biography:</label>
-            <input type="text" id="author-biography" biography="author-biography" required>
+<table id="author-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value="{{this.authorID}}">
+            <td>{{this.authorID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.birthdate}}</td>
+            <td>{{this.biography}}</td>
+            <td><button onclick="deleteAuthor('{{this.authorID}}')">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_author.js"></script>
 
-            <input type="submit" value="Add Author">
-        </form>
-    </section>
+<section id="add-author">
+    <h2>Add New Author</h2>
+    <form id="add-author-form" action="/add-author-form" method="POST">
+        <label for="input-name">Author Name:</label>
+        <input type="text" id="input-name" name="input-name" required>
+
+        <label for="input-birthdate">Author Birthday:</label>
+        <input type="date" id="input-birthdate" name="input-birthdate">
+
+        <label for="input-biography">Author Biography:</label>
+        <textarea id="input-biography" name="input-biography" rows="2" cols="50"></textarea>
+
+        <input type="submit" value="Add Author">
+    </form>
+</section>

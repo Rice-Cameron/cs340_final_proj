@@ -24,7 +24,7 @@
             <td>{{this.publicationYear}}</td>
             <td>{{this.copiesAvailable}}</td>
             <td>{{this.publisherID}}</td>
-            <td><button onclick="deleteBook({{this.isbn}})">Delete</button></td>
+            <td><button onclick="deleteBook('{{this.isbn}}')">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -36,16 +36,16 @@
 <form id="add-book-form" method="POST" action="/add-book-form">
 
     <label for="input-isbn">ISBN: </label>
-    <input type="text" name="input-isbn" id="input-isbn">
+    <input type="text" name="input-isbn" id="input-isbn" required>
     
     <label for="input-title">Title: </label>
-    <input type="text" name="input-title" id="input-title">
+    <input type="text" name="input-title" id="input-title" required>
     
     <label for="input-pubyear">Publication Year: </label>
-    <input type="number" name="input-pubyear" id="input-pubyear">
+    <input type="number" name="input-pubyear" id="input-pubyear" required>
     
     <label for="input-copies">Copies Available: </label>
-    <input type="number" name="input-copies" id="input-copies">
+    <input type="number" name="input-copies" id="input-copies" required>
     
     <label for="input-pubID">Publisher: </label>
     <select name="input-pubID" id="input-pubID">
@@ -74,7 +74,7 @@
 
     <label for="input-isbn">Book: </label>
     <select name="input-isbn" id="mySelect">
-        <option value="test">Select a Book</option>
+        <option>Select a Book</option>
         {{#each data}}
         <option value="{{this.isbn}}">{{this.title}}</option>
         {{/each}}
