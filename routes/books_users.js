@@ -15,7 +15,12 @@ router.get('/books_users', (req, res) => {
 
     db.pool.query(query1, function(error, rows, fields){
         let booksUsers = rows;
-
+        for (let i = 0; i < booksUsers.length; i++) {
+            booksUsers[i].dateBorrowed = booksUsers[i].dateBorrowed.toISOString().split('T')[0];
+            if (booksUsers[i].dueDate != null){
+                booksUsers[i].dueDate = booksUsers[i].dueDate.toISOString().split('T')[0];
+            }
+        }
         db.pool.query(query2, function(error, rows, fields){
             let books = rows;
 
