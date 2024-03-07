@@ -7,11 +7,20 @@
     padding: 10px;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
 #add-author h2 {
     margin-top: 0;
 }
 
- #add-book-authors {
+ #add-books-authors-form {
     border: 2px solid black;
     margin-top: 5px;
     margin-right: 10px;
@@ -20,10 +29,10 @@
     padding: 10px;
 }
 
-#add-book-authors h2 {
+#add-books-authors h2 {
     margin-top: 0;
 }
-#add-book-genres {
+#add-books-genres-form {
     border: 2px solid black;
     margin-top: 5px;
     margin-right: 10px;
@@ -32,11 +41,11 @@
     padding: 10px;
 }
 
-#add-book-genres h2 {
+#add-books-genres h2 {
     margin-top: 0;
 }
 
-#add-book-users {
+#add-books-users-form {
     border: 2px solid black;
     margin-top: 5px;
     margin-right: 10px;
@@ -45,10 +54,11 @@
     padding: 10px;
 }
 
-#add-book-users h2 {
+#add-books-users h2 {
     margin-top: 0;
 }
-  #add-user {
+
+#add-user-form {
     border: 2px solid black;
     margin-top: 5px;
     margin-right: 10px;
@@ -61,7 +71,7 @@
     margin-top: 0;
 }
 
-#add-review {
+#add-review-form {
     border: 2px solid black;
     margin-top: 5px;
     margin-right: 10px;
@@ -74,7 +84,7 @@
     margin-top: 0;
 }
 
-#add-publisher {
+#add-publisher-form {
     border: 2px solid black;
     margin-top: 5px;
     margin-right: 10px;
@@ -87,7 +97,7 @@
     margin-top: 0;
 }
 
-        #add-genre {
+#add-genre-form {
     border: 2px solid black;
     margin-top: 5px;
     margin-right: 10px;

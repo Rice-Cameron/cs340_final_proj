@@ -1,57 +1,57 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <h1>Books Users</h1>
-    <div id="table-of-books-users" style="display: block">
-        <h3><strong>List of Books Users:</strong></h3>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Book ISBN</th>
-                <th>User ID</th>
-                <th>Date Borrowed</th>
-                <th>Due Date</th>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksUsers(1)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksUsers(1)" class="delete-button">Delete</button></td>
-                <td>978-1982131739</td>
-                <td>1</td>
-                <td>2024-02-22</td>
-                <td>2024-03-01</td>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksUsers(2)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksUsers(2)" class="delete-button">Delete</button></td>
-                <td>978-0061120084</td>
-                <td>2</td>
-                <td>2024-02-22</td>
-                <td>2024-03-01</td>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksUsers(3)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksUsers(3)" class="delete-button">Delete</button></td>
-                <td>978-0307474278</td>
-                <td>3</td>
-                <td>2024-02-22</td>
-                <td>2024-03-01</td>
-            </tr>
-        </table>
-    </div>
-        <section id="add-book-users">
-        <h2>Add New Books Users</h2>
-        <form action="#" method="post">
 
-            <label for="book-isbn">Book ISBN:</label>
-            <input type="text" id="book-isbn" name="book-isbn" required>
+<table id="books-users-table">
+    <thead>
+    <tr>
+        {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+        {{/each}}
+        <th>delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each data}}
+        <tr data-value="{{this.borrowingID}}">
+            <td>{{this.borrowingID}}</td>
+            <td>{{this.isbn}}</td>
+            <td>{{this.userID}}</td>
+            <td>{{this.dateBorrowed}}</td>
+            <td>{{this.dueDate}}</td>
+            <td><button onclick="deleteBooksUsers('{{this.borrowingID}}')">Delete</button></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_books_users.js"></script>
 
-            <label for="user-id">User ID:</label>
-            <input type="text" id="user-id" name="user-id" required>
+<section id="add-books-users">
+    <h2>Add New Books Users Relationship</h2>
+    <form id="add-books-users-form" action="/add-books-users-form" method="POST">
+        <label for="input-isbn">Book: </label>
+        <select name="input-isbn" id="mySelect">
+            <option>Select a Book</option>
+            {{#each books}}
+                <option value="{{this.isbn}}">{{this.title}}</option>
+            {{/each}}
+        </select>
 
-            <label for="date-borrowed">Date Borrowed:</label>
-            <input type="text" id="date-borrowed" name="date-borrowed" required>
+        <select name="input-userID" id="input-userID">
+            <option>Select a User</option>
+            {{#each users}}
+                <option value="{{this.userID}}">{{this.name}}</option>
+            {{/each}}
+        </select>
 
-            <label for="due-date">Due Date:</label>
-            <input type="text" id="due-date" name="due-date" required>
+        <label for="input-dateBorrowed">Date Borrowed:</label>
+        <input type="date" id="input-dateBorrowed" name="input-dateBorrowed" required>
 
-            <input type="submit" value="Add Books_Users">
-        </form>
-    </section>
+        <label for="input-dueDate">Due Date:</label>
+        <input type="date" id="input-dueDate" name="input-dueDate">
+
+        <input type="submit" value="Add Books_Users">
+    </form>
+</section>

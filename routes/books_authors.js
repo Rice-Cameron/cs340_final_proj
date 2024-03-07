@@ -1,12 +1,11 @@
 // Camerons
-const express = require('express')
-const router = express.Router()
-var db = require('../database/db-connector')
-const { parse } = require('handlebars')
+var db = require('../database/db-connector');
+const express = require("express");
+const router = express.Router();
 
 router.use((req, res, next) => {
     next()
-  })
+});
 
 
 router.get('/books_authors', (req, res) => {
@@ -51,13 +50,43 @@ router.get('/books_authors', (req, res) => {
         })
 
         booksAuthors = booksAuthors.map(ba => {
-          return Object.assign(ba, {authorID: authormap[ba.authorID]})
+          return Object.assign(ba, {authorID: authormap[ba.authorID], isbn: bookmap[ba.isbn]})
         })
-        console.log(booksAuthors)
         return res.render('books_authors', { data: booksAuthors, books: books, authors: authors });
       })      
     })
   })
 });
 
-module.exports = router
+router.post("/add-books-authors-form", function (req, res) {
+  let data = req.body;
+  let query1 = `SELECT authorID FROM Authors where name = '${data["input-authorID"]}'`
+  db.pool.query(query1, function(error, rows, fields){
+    let id = rows[0].authorID;
+    let query2 = `INSERT INTO Books_Authors (isbn, authorID) VALUES ('${data["input-isbn"]}', '${id}')`;
+    db.pool.query(query2, function (error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        res.redirect("/books_authors");
+      }
+    });
+  })
+});
+
+router.delete('/delete-books-authors-ajax/', function(req, res){
+  let data = req.body;
+  let query = `DELETE FROM Books_Authors WHERE authorshipID = ?`;
+  db.pool.query(query, [data.authorshipID], function(error, rows, fields){
+    if(error){
+      console.log(error);
+      res.sendStatus(400);
+    }
+    else{
+      res.sendStatus(204);
+    }
+  });
+})
+
+module.exports = router;
