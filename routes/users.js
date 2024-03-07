@@ -63,6 +63,7 @@ router.post('/add-user-form', (req, res) => {
 
 router.delete('/delete-user-ajax/', (req, res) => {
   let data = req.body
+    console.log(data.userID)
     let query = `DELETE FROM Users WHERE userID = ?`
     db.pool.query(query, [data.userID], function(error, rows, fields){
         if(error){
