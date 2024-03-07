@@ -30,8 +30,8 @@ router.get('/books_users', (req, res) => {
                 // Map isbn to a title
                 let bookmap = {}
                 books.map(book => {
-                    let isbn = book.isbn;
-                    bookmap[isbn] = book["title"];
+                    let id = parseInt(book.isbn, 10);
+                    bookmap[id] = book["title"];
                 })
 
                 // Map userID to a name
