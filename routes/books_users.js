@@ -50,7 +50,7 @@ router.get('/books_users', (req, res) => {
                 })
 
                 booksUsers = booksUsers.map(bu => {
-                    return Object.assign(bu, {userID: usermap[bu.userID], title: bookmap[bu.isbn]})
+                    return Object.assign(bu, {userID: usermap[bu.userID], isbn: bookmap[bu.isbn]})
                 })
                 return res.render('books_users', { data: booksUsers, books: books, users: users });
             })

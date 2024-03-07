@@ -50,7 +50,7 @@ router.get('/books_authors', (req, res) => {
         })
 
         booksAuthors = booksAuthors.map(ba => {
-          return Object.assign(ba, {authorID: authormap[ba.authorID], title: bookmap[ba.isbn]})
+          return Object.assign(ba, {authorID: authormap[ba.authorID], isbn: bookmap[ba.isbn]})
         })
         return res.render('books_authors', { data: booksAuthors, books: books, authors: authors });
       })      
