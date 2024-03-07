@@ -1,7 +1,7 @@
 // Camerons
 var db = require('../database/db-connector');
-const router = express.Router();
 const express = require("express");
+const router = express.Router();
 
 router.use((req, res, next) => {
     next()
