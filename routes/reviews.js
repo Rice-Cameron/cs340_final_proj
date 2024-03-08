@@ -1,15 +1,56 @@
 // Brandons
-const express = require('express')
-const router = express.Router()
-var db = require('../database/db-connector')
+const express = require("express");
+const router = express.Router();
+var db = require("../database/db-connector");
 
 router.use((req, res, next) => {
-    next()
-  })
+  next();
+});
 
+router.get("/reviews", function (req, res) {
+  let query1 = "SELECT * FROM Reviews;";
+  let query2 = "SELECT * FROM Books";
+  let query3 = "SELECT * FROM Users";
 
-router.get('/reviews', (req, res) => {
-   res.render('reviews') 
+  db.pool.query(query1, function (error, rows, fields) {
+    // ASSIGN ROWS TO A VAR REVIEWS
+    // RUN QUERY 2
+    // ASSIGN ROWS TO A VAR BOOKS
+    // RUN QUERY 3
+    // ASSIGN ROWS TO A VAR USERS
+    // PASS INTO RES.RENDER AFTER DATA: ROWS, {HERE}
+    return res.render("reviews", { data: rows });
+  });
+});
+
+router.post("/add-review-form", function (req, res) {
+  let data = req.body;
+  let query1 = `INSERT INTO Reviews (userID, isbn, rating, reviewText) 
+                VALUES 
+                ('${data["input-userID"]}', '${data["input-isbn"]}', '${data["input-rating"]}', '${data["input-reviewText"]}')`;
+  db.pool.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.redirect("/reviews");
+    }
+  });
+});
+
+router.delete('/delete-review-ajax/', function (req, res) {
+  let data = req.body;
+  let query = `DELETE FROM Reviews WHERE reviewID = ?`;
+  db.pool.query(query, [data.reviewID], function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    }
+    else {
+      res.sendStatus(204);
+    }
+  });
 })
 
-module.exports = router
+
+module.exports = router;
