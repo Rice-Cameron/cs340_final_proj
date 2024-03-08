@@ -33,16 +33,18 @@
     <form id="add-review-form" action="/add-review-form" method="POST">
 
         <label for="input-userID">User ID:</label>
-        <textarea id="input-userID" name="input-userID" rows="2" cols="7"></textarea>
-
-        <label for="input-isbn">ISBN:</label>
-        <textarea id="input-isbn" name="input-isbn" rows="2" cols="40"></textarea>
-
+        <input id="input-userID" name="input-userID"></input>
+        <select name="input-isbn" id="mySelect">
+            <option>Select a Book</option>
+            {{#each books}}
+            <option value="{{this.isbn}}">{{this.title}}</option>
+            {{/each}}
+        </select>
         <label for="input-rating">Review Rating:</label>
-        <textarea id="input-rating" name="input-rating" rows="2" cols="7"></textarea>
+        <input id="input-rating" name="input-rating" type="number"></input>
 
         <label for="input-reviewText">Review Text:</label>
-        <textarea id="input-reviewText" name="input-reviewText" rows="2" cols="50"></textarea>
+        <textarea id="input-reviewText" name="input-reviewText" rows="1" cols="50"></textarea>
 
         <input type="submit" value="Add Reveiw">
     </form>
