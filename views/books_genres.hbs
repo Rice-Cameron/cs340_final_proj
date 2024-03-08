@@ -1,47 +1,51 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <h1>Books Genres</h1>
-    <div id="table-of-books-genres" style="display: block">
-        <h3><strong>List of Books Genres:</strong></h3>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>assignment ID</th>
-                <th>ISBN</th>
-                <th>Genre Name</th>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksGenres(1)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksGenres(1)" class="delete-button">Delete</button></td>
-                <td>1</td>
-                <td>978-1982131739</td>
-                <td>Dystopian Fiction</td>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksGenres(2)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksGenres(2)" class="delete-button">Delete</button></td>
-                <td>2</td>
-                <td>978-0061120084</td>
-                <td>Southern Gothic</td>
-            </tr>
-            <tr>
-                <td><button onclick="editBooksGenres(3)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteBooksGenres(3)" class="delete-button">Delete</button></td>
-                <td>3</td>
-                <td>978-0307474278</td>
-                <td>Coming-of-Age Fiction</td>
-            </tr>
-        </table>
-    </div>
-        <section id="add-book-genres">
-        <h2>Add New Books Genres</h2>
-        <form action="#" method="post">
 
-            <label for="isbn">ISBN:</label>
-            <input type="text" id="isbn" name="isbn" required>
+<table id="books-genres-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value="{{this.assignmentID}}">
+            <td>{{this.assignmentID}}</td>
+            <td>{{this.isbn}}</td>
+            <td>{{this.genreID}}</td>
+            <td><button onclick="deleteBooksGenres('{{this.assignmentID}}')">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 
-            <label for="genre-name">Genre Name:</label>
-            <input type="text" id="genre-name" name="genre-name" required>
 
-            <input type="submit" value="Add Books_Genres">
-        </form>
-    </section>
+<script src="./js/delete_books_genres.js"></script>
+
+<section id="add-books-genres">
+    <h2>Add New Books Genres Relationship</h2>
+    <form id="add-books-genres-form" action="/add-books-genres-form" method="POST">
+        <label for="input-isbn">Book: </label>
+        <select name="input-isbn" id="mySelect">
+            <option>Select a Book</option>
+            {{#each books}}
+            <option value="{{this.isbn}}">{{this.title}}</option>
+            {{/each}}
+        </select>
+
+        <select name="input-genreID" id="input-genreID">
+            <option>Select an Genre</option>
+            {{#each genres}}
+            <option value="{{this.genreName}}">{{this.genreName}}</option>
+            {{/each}}
+        </select>
+
+        <input type="submit" value="Add Books_Genres">
+    </form>
+</section>

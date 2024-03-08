@@ -1,39 +1,35 @@
-<h1>Publishers</h1>   
-    <div id="table-of-publishers" style="display: block">
-        <h3><strong>List of our publishers:</strong></h3>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Publisher ID</th>
-                <th>Publisher Name</th>
-            </tr>
-            <tr>
-                <td><button onclick="editPublisher(1)" class="edit-button">Edit</button></td>
-                <td><button onclick="deletePublisher(1)" class="delete-button">Delete</button></td>
-                <td>1</td>
-                <td>Little, Brown and Company</td>
-            </tr>
-            <tr>
-                <td><button onclick="editPublisher(2)" class="edit-button">Edit</button></td>
-                <td><button onclick="deletePublisher(2)" class="delete-button">Delete</button></td>
-                <td>2</td>
-                <td>Harper Perennial Modern Classics</td>
-            </tr>
-            <tr>
-                <td><button onclick="editPublisher(3)" class="edit-button">Edit</button></td>
-                <td><button onclick="deletePublisher(3)" class="delete-button">Delete</button></td>
-                <td>3</td>
-                <td>Penguin Books</td>
-            </tr>
-        </table>
-    </div>
-        <section id="add-publisher">
-        <h2>Add New Publisher</h2>
-        <form action="#" method="post">
-            <label for="publisher-name">Publisher Name:</label>
-            <input type="text" id="publisher-name" name="publisher-name" required>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-            <input type="submit" value="Add Publisher">
-        </form>
-    </section>
+<h1>Publishers</h1>
+
+<table id="publisher-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value="{{this.publisherID}}">
+            <td>{{this.publisherID}}</td>
+            <td>{{this.publisherName}}</td>
+            <td><button onclick="deletePublisher('{{this.publisherID}}')">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_publisher.js"></script>
+
+<section id="add-publisher">
+    <h2>Add New Publisher</h2>
+    <form id="add-publisher-form" action="/add-publisher-form" method="POST">
+        <label for="input-name">Publisher Name:</label>
+        <input type="text" id="input-publisherName" name="input-publisherName" required>
+        <input type="submit" value="Add Publisher">
+    </form>
+</section>

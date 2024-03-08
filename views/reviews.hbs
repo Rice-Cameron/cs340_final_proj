@@ -1,62 +1,49 @@
-<h1>Reviews</h1>    
-    <div id="table-of-reviews" style="display: block">
-        <h3><strong>List of Reviews:</strong></h3>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Review ID</th>
-                <th>User ID</th>
-                <th>ISBN</th>
-                <th>Rating</th>
-                <th>Review Text</th>
-            </tr>
-            <tr>
-                <td><button onclick="editReview(1)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteReview(1)" class="delete-button">Delete</button></td>
-                <td>1</td>
-                <td>1</td>
-                <td>978-1982131739</td>
-                <td>4</td>
-                <td>A thought-provoking classic that remains relevant to this day.</td>
-            </tr>
-            <tr>
-                <td><button onclick="editReview(2)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteReview(2)" class="delete-button">Delete</button></td>
-                <td>2</td>
-                <td>2</td>
-                <td>978-0061120084</td>
-                <td>5</td>
-                <td>A timeless masterpiece with powerful themes.</td>
-            </tr>
-            <tr>
-                <td><button onclick="editReview(3)" class="edit-button">Edit</button></td>
-                <td><button onclick="deleteReview(3)" class="delete-button">Delete</button></td>
-                <td>3</td>
-                <td>3</td>
-                <td>978-0307474278</td>
-                <td>3</td>
-                <td>An interesting coming-of-age story, but not my favorite.</td>
-            </tr>
-        </table>
-    </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-        <section id="add-review">
-        <h2>Add New Review</h2>
-        <form action="#" method="post">
+<h1>Reviews</h1>
 
-            <label for="user-id">User ID:</label>
-            <input type="text" id="user-id" name="user-id" required>
+<table id="review-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value="{{this.reviewID}}">
+            <td>{{this.reviewID}}</td>
+            <td>{{this.userID}}</td>
+            <td>{{this.isbn}}</td>
+            <td>{{this.rating}}</td>
+            <td>{{this.reviewText}}</td>
+            <td><button onclick="deleteReview('{{this.reviewID}}')">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_review.js"></script>
 
-            <label for="isbn">ISBN:</label>
-            <input type="text" id="isbn" name="isbn" required>
+<section id="add-review">
+    <h2>Add New Review</h2>
+    <form id="add-review-form" action="/add-review-form" method="POST">
 
-            <label for="rating">Rating:</label>
-            <input type="text" id="rating" name="rating" required>
+        <label for="input-userID">User ID:</label>
+        <textarea id="input-userID" name="input-userID" rows="2" cols="7"></textarea>
 
-            <label for="reviewText">Review Text:</label>
-            <input type="text" id="reviewText" name="reviewText" required>
+        <label for="input-isbn">ISBN:</label>
+        <textarea id="input-isbn" name="input-isbn" rows="2" cols="40"></textarea>
 
-            <input type="submit" value="Add Review">
-        </form>
-    </section>
+        <label for="input-rating">Review Rating:</label>
+        <textarea id="input-rating" name="input-rating" rows="2" cols="7"></textarea>
+
+        <label for="input-reviewText">Review Text:</label>
+        <textarea id="input-reviewText" name="input-reviewText" rows="2" cols="50"></textarea>
+
+        <input type="submit" value="Add Reveiw">
+    </form>
+</section>
