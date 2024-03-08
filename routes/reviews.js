@@ -13,7 +13,12 @@ router.get("/reviews", function (req, res) {
   let query3 = "SELECT * FROM Users";
 
   db.pool.query(query1, function (error, rows, fields) {
-
+    // ASSIGN ROWS TO A VAR REVIEWS
+    // RUN QUERY 2
+    // ASSIGN ROWS TO A VAR BOOKS
+    // RUN QUERY 3
+    // ASSIGN ROWS TO A VAR USERS
+    // PASS INTO RES.RENDER AFTER DATA: ROWS, {HERE}
     return res.render("reviews", { data: rows });
   });
 });
