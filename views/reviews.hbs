@@ -32,11 +32,21 @@
     <h2>Add New Review</h2>
     <form id="add-review-form" action="/add-review-form" method="POST">
 
-        <label for="input-userID">User ID:</label>
-        <input id="input-userID" name="input-userID"></input>
+       <label for="input-userID">User: </label>
+        <select name="input-userID" id="input-userID">
+            <option>Select a User</option>
+            {{#each users}}
+                <option value="{{this.userID}}">{{this.name}}</option>
+            {{/each}}
+        </select>
 
-        <label for="input-isbn">ISBN:</label>
-        <input id="input-isbn" name="input-isbn"></input>
+       <label for="input-isbn">Book: </label>
+        <select name="input-isbn" id="mySelect">
+            <option>Select a Book</option>
+            {{#each books}}
+            <option value="{{this.isbn}}">{{this.title}}</option>
+            {{/each}}
+        </select>
 
         <label for="input-rating">Review Rating:</label>
         <input type="number" min="0" max="10" id="input-rating" name="input-rating" ></input>
@@ -44,6 +54,6 @@
         <label for="input-reviewText">Review Text:</label>
         <textarea id="input-reviewText" name="input-reviewText" rows="2" cols="50"></textarea>
 
-        <input type="submit" value="Add Reveiw">
+        <input type="submit" value="Add Review">
     </form>
 </section>
