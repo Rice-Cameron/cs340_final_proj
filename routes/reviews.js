@@ -13,13 +13,37 @@ router.get("/reviews", function (req, res) {
   let query3 = "SELECT * FROM Users";
 
   db.pool.query(query1, function (error, rows, fields) {
-    // ASSIGN ROWS TO A VAR REVIEWS
-    // RUN QUERY 2
-    // ASSIGN ROWS TO A VAR BOOKS
-    // RUN QUERY 3
-    // ASSIGN ROWS TO A VAR USERS
-    // PASS INTO RES.RENDER AFTER DATA: ROWS, {HERE}
-    return res.render("reviews", { data: rows });
+    let reviews = rows
+      db.pool.query(query2, function(error, rows, fields) {
+        let books = rows
+        db.pool.query(query3,function(error, rows, fields){
+          let users = rows
+
+          // Map isbn to a title
+          let bookmap = {}
+          books.map(book => {
+            let isbn = book.isbn;
+            bookmap[isbn] = book["title"];
+          })
+
+          // Map userID to a Name
+          let namemap = {}
+          users.map(user => {
+            let id = parseInt(user.userID, 10)
+            namemap[id] = user["name"]
+          })
+
+          // Assign to objects
+          books = books.map(book => {
+            return Object.assign(book, { title: bookmap[book.isbn] })
+          })
+          
+          users = users.map(user => {
+            return Object.assign(user, { name: namemap[user.userID] })
+          })
+          return res.render("reviews", { data: reviews, books: books, users: users })
+        })
+      })
   });
 });
 
